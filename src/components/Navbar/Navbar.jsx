@@ -40,10 +40,10 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm lg:text-xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
+                    <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm md:text-xl lg:text-2xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 ml-5 bg-transparent items-center gap-2 lg:gap-5 font-bold">
+                    <ul className="menu menu-horizontal text-sm lg:text-base px-1 ml-20 bg-transparent items-center gap-2 lg:gap-5 font-bold">
                         {
                             navLinks
                         }
