@@ -15,7 +15,7 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 200) {
+            if (window.scrollY > 100) {
                 setScrolled(true);
             } else {
                 setScrolled(false);
@@ -31,7 +31,7 @@ const Navbar = () => {
             <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-4 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent hover:text-[#FF9800] lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -40,18 +40,18 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm md:text-2xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
+                    <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm lg:text-xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 ml-5 bg-transparent items-center gap-2 md:gap-5 font-bold">
+                    <ul className="menu menu-horizontal px-1 ml-5 bg-transparent items-center gap-2 lg:gap-5 font-bold">
                         {
                             navLinks
                         }
                     </ul>
                 </div>
                 <div className="navbar-end hidden md:flex gap-x-1">
-                    <NavLink to="/login" className="btn text-white bg-[#cbb58b] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
-                    <NavLink to="/register" className="btn text-white bg-[#cbb58b] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
+                    <NavLink to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
+                    <NavLink to="/register" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
                 </div>
             </div>
         </div>
