@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
+import { FcGoogle } from "react-icons/fc";
 
 const LogIn = () => {
     const [eyeCheck, setEyeCheck] = useState(false);
@@ -52,12 +53,20 @@ const LogIn = () => {
                                     <span className="label-text font-semibold">Password</span>
                                 </label>
                                 <input type={eyeCheck ? "text" : "password"} name="password" placeholder="Password" className="input input-bordered" required />
-                                <Link  className="absolute right-14 bottom-[190px]  md:bottom-[166px] text-base-content" onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
+                                <Link className={`absolute right-14 ${role === "Librarian" ? "bottom-[190px]  md:bottom-[166px]": "bottom-[297px]  md:bottom-[275px]"} text-base-content`} onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
                                 <p className="mt-4">Get your library access ! <Link className="text-[#FF9800] font-medium hover:font-bold" to="/register">Register Now</Link></p>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Login</button>
                             </div>
+                            {
+                                role === "User" && <>
+                                    <div className="divider mb-0">OR</div>
+                                    <div className="form-control mt-3">
+                                        <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]"><FcGoogle className="h-7 w-7" />Login With Google</button>
+                                    </div>
+                                </>
+                            }
                         </form>
                     </div>
                 </div>
