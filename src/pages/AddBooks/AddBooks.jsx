@@ -2,7 +2,6 @@ import { useContext } from "react";
 import libraryBG from "../../images/libraryBG.jpg";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
-import { toast } from "react-toastify";
 const AddBooks = () => {
     const { user } = useContext(AuthContext);
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -30,14 +29,19 @@ const AddBooks = () => {
         axios.post(`${baseUrl}/books`, bookDetails)
             .then(res => {
                 console.log(res);
+                alert("Book Added successfully !!!");
+                form.reset();
+                form.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
             })
     }
     return (
         <div className="register min-h-screen flex justify-center items-center">
-            <div className="hero min-h-[800px] mt-5 md:mt-16 bg-base-200 container mx-auto bg-cover bg-no-repeat bg-center rounded-xl md:rounded-3xl" style={{ backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.2) 100%), url(${libraryBG})` }}>
+            <div className="hero min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url(${libraryBG})` }}>
                 <div className="w-full py-5 md:py-20 px-2 md:px-0">
-                    <div className="card shrink-0 md:w-3/4 shadow-2xl backdrop-blur-sm bg-base-100/50 container mx-auto">
-                        <div className="mt-10 bg-base-100/50 border-2 border-base-content px-2 py-2 flex justify-center items-center mx-auto rounded-full md:w-auto">
+                    <div className="card shrink-0 shadow-2xl backdrop-blur-sm bg-base-100/50 container mx-auto">
+                        <div className="mt-10 bg-base-100/50 border-2 border-base-content px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
                             <h3 className="text-2xl md:text-3xl font-bold text-center">Hey, <span className="text-[#f99500]">{user.displayName}</span> !!!</h3>
                         </div>
                         <h1 className="md:text-2xl font-semibold text-center mt-5">Add new collection to your book kingdom :</h1>
@@ -100,7 +104,7 @@ const AddBooks = () => {
                                 <textarea name="book_content" className="textarea textarea-bordered" placeholder="Book Content"></textarea>
                             </div>
                             <div className="form-control mt-6 md:col-span-2">
-                                <button className="btn bg-[#ea9b25] text-white font-medium hover:bg-base-100 hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Login</button>
+                                <button className="btn bg-[#ea9b25] text-white font-medium hover:bg-base-100 hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Add</button>
                             </div>
                         </form>
                     </div>
