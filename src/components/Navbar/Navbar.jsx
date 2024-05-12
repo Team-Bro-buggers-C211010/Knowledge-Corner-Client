@@ -6,13 +6,14 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { ClockLoader } from "react-spinners";
 import axios from "axios";
 const Navbar = () => {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const { user, loading, logOut } = useContext(AuthContext);
     const [theme, setTheme] = useState("light");
     const [role, setRole] = useState(null);
     useEffect(() => {
         if (user) {
             axios
-                .get(`http://localhost:5000/users?email=${user?.email}`)
+                .get(`${baseUrl}/users?email=${user?.email}`)
                 .then((res) => {
                     setRole(res.data[0].role);
                 });

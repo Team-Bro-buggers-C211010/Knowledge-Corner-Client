@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 // import useAxiosSecure from './../../hooks/useAxiosSecure';
 const Register = () => {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const location = useLocation();
     const { setUser, setLoading } = useContext(AuthContext);
     const { createUser } = useContext(AuthContext);
@@ -54,7 +55,7 @@ const Register = () => {
         }
         createUser(email, password)
             .then(res => {
-                axios.post("http://localhost:5000/users", user)
+                axios.post(`${baseUrl}/users`, user)
                     .then(res => {
                         console.log(res);
                     })

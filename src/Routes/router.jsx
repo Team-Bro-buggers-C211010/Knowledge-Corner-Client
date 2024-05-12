@@ -5,6 +5,7 @@ import Register from "../pages/Register/Register";
 import LogIn from "../pages/LogIn/LogIn";
 import AddBooks from "../pages/AddBooks/AddBooks";
 import PrivateRoutes from "./PrivateRoutes";
+import Updated from "../pages/Updated/Updated";
 const router = createBrowserRouter([
     {
         path:"/",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: "/add-book",
                 element: <PrivateRoutes><AddBooks></AddBooks></PrivateRoutes>
+            },
+            {
+                path: "/update-book",
+                element: <PrivateRoutes><Updated></Updated></PrivateRoutes>
             }
         ]
     }
