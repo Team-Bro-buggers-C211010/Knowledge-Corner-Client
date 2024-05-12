@@ -76,6 +76,21 @@ const Register = () => {
                     timerProgressBar: true,
                     didOpen: () => {
                         Swal.showLoading();
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+                });
+            })
+            .catch(err => {
+                let timerInterval;
+                Swal.fire({
+                    title: "Invalid information or user already created !!!",
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
                         const timer = Swal.getPopup().querySelector("b");
                         timerInterval = setInterval(() => {
                             timer.textContent = `${Swal.getTimerLeft()}`;
@@ -86,25 +101,6 @@ const Register = () => {
                     }
                 }).then((result) => {
                 });
-            })
-            .catch(err => {
-                // let timerInterval;
-                // Swal.fire({
-                //     title: "Invalid information or user already created !!!",
-                //     timer: 1000,
-                //     timerProgressBar: true,
-                //     didOpen: () => {
-                //         Swal.showLoading();
-                //         const timer = Swal.getPopup().querySelector("b");
-                //         timerInterval = setInterval(() => {
-                //             timer.textContent = `${Swal.getTimerLeft()}`;
-                //         }, 100);
-                //     },
-                //     willClose: () => {
-                //         clearInterval(timerInterval);
-                //     }
-                // }).then((result) => {
-                // });
             })
     }
     return (
