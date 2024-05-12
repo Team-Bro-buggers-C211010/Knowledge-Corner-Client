@@ -10,11 +10,15 @@ const Navbar = () => {
     const [theme, setTheme] = useState("light");
     const [role, setRole] = useState(null);
     useEffect(() => {
-        axios.get(`http://localhost:5000/users?email=${user?.email}`)
-            .then(res => {
-                setRole(res.data[0].role);
-                console.log(role);
-            })
+        if (user) {
+            axios
+                .get(`http://localhost:5000/users?email=${user?.email}`)
+                .then((res) => {
+                    setRole(res.data[0].role);
+                });
+        } else {
+            setRole(null);
+        }
     }, [user?.email])
     console.log(role);
     useEffect(() => {
@@ -73,17 +77,17 @@ const Navbar = () => {
     }
     const navLinks = <>
         <NavLink to="/" className={({ isActive }) =>
-            isActive ? "border-2 p-1 md:p-3 border-[#ea9b25]  rounded-lg text-[#FF9800]" : "p-3 hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Home</NavLink>
+            isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent  border-2 border-[#ea9b25]  rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Home</NavLink>
         <NavLink to="/all-books" className={({ isActive }) =>
-            isActive ? "border-2 p-1 md:p-3 border-[#ea9b25] rounded-lg text-[#FF9800]" : "p-3 hover:border-2  hover:bg-transparent  hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>All Books</NavLink>
+            isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent  hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>All Books</NavLink>
         {
             role === "Librarian" && <>
                 <NavLink to="/add-book" className={({ isActive }) =>
-                    isActive ? "border-2 p-1 md:p-3 border-[#ea9b25] rounded-lg text-[#FF9800]" : "p-3 hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Add Books</NavLink>
+                    isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Add Books</NavLink>
             </>
         }
         <NavLink to="/borrow-books" className={({ isActive }) =>
-            isActive ? "border-2 p-1 md:p-3 border-[#ea9b25] rounded-lg text-[#FF9800]" : "p-3 hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Borrowed Books</NavLink>
+            isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Borrowed Books</NavLink>
     </>
     const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
@@ -101,13 +105,13 @@ const Navbar = () => {
 
     return (
         <div className="flex justify-center items-center">
-            <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-4 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
+            <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-5 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent hover:text-[#FF9800] lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-52">
                             {
                                 navLinks
                             }
@@ -115,7 +119,7 @@ const Navbar = () => {
                                 {
                                     loading ? <div className="flex justify-center items-center"><ClockLoader color="#ea9b25" /></div>
                                         :
-                                        user ? <NavLink onClick={handleLogOut} className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
+                                        user ? <NavLink onClick={handleLogOut} to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
                                             :
                                             <>
                                                 <NavLink to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
@@ -128,7 +132,7 @@ const Navbar = () => {
                     <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm md:text-xl lg:text-2xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal text-sm lg:text-base px-1 ml-20 bg-transparent items-center gap-2 lg:gap-5 font-bold">
+                    <ul className="menu menu-horizontal text-sm lg:text-base px-1 ml-20 bg-transparent items-center gap-x-2 lg:gap-x-5 font-bold">
                         {
                             navLinks
                         }
@@ -146,7 +150,7 @@ const Navbar = () => {
                                         </div>
                                     </div>
                                 </NavLink>
-                                <NavLink onClick={handleLogOut} className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
+                                <NavLink onClick={handleLogOut} to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
                             </> :
                                 <>
                                     <NavLink to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
