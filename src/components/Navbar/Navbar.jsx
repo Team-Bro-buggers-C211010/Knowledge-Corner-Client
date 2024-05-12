@@ -72,7 +72,7 @@ const Navbar = () => {
             })
     }
     const navLinks = <>
-        <NavLink className={({ isActive }) =>
+        <NavLink to="/" className={({ isActive }) =>
             isActive ? "border-2 p-1 md:p-3 border-[#ea9b25]  rounded-lg text-[#FF9800]" : "p-3 hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Home</NavLink>
         <NavLink to="/all-books" className={({ isActive }) =>
             isActive ? "border-2 p-1 md:p-3 border-[#ea9b25] rounded-lg text-[#FF9800]" : "p-3 hover:border-2  hover:bg-transparent  hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>All Books</NavLink>
