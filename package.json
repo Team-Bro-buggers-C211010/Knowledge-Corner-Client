@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "axios": "^1.6.8",
     "firebase": "^10.11.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
@@ -23,8 +24,10 @@
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
     "react-spinners": "^0.13.8",
+    "react-toastify": "^10.0.5",
     "sort-by": "^1.2.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "sweetalert2": "^11.11.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
