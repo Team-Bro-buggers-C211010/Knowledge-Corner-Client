@@ -23,7 +23,7 @@ const ListView = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        <tr className="text-[#404142] md:text-base bg-[#c6bbb0] font-semibold md:font-bold hover:bg-[#404142] hover:text-[#FF9800]">
+                        <tr className="text-[#404142] border-b-2 border-[#404142] md:text-base bg-[#c6bbb0] font-semibold md:font-bold hover:bg-[#404142] hover:text-[#FF9800]">
                             <th>1</th>
                             <td><img className="h-20 md:w-16 object-cover object-center" src="https://i.ibb.co/9Tdpck0/Watchmen.webp" alt="Watchmen" /></td>
                             <td>Watchmen</td>
