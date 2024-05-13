@@ -25,7 +25,7 @@ const Updated = () => {
         const book_photo = form.book_photo.value;
         const book_author = form.book_author.value;
         const book_category = form.book_category.value;
-        const book_rating = form.book_rating.value;
+        const book_rating = parseFloat(form.book_rating.value);
         if (isNaN(parseFloat(book_rating)) || parseFloat(book_rating) < 1 || parseFloat(book_rating) > 5) {
             alert("Rating should be a number between 1 and 5 !!!");
             return;

@@ -11,9 +11,9 @@ const AddBooks = () => {
         const book_name = form.book_name.value;
         const book_photo = form.book_photo.value;
         const book_author = form.book_author.value;
-        const book_quantity = form.book_quantity.value;
+        const book_quantity = parseInt(form.book_quantity.value);
         const book_category = form.book_category.value;
-        const book_rating = form.book_rating.value;
+        const book_rating = parseFloat(form.book_rating.value);
         const book_short_description = form.book_short_description.value;
         const book_content = form.book_content.value;
         if(book_quantity < 0 || book_rating < 0 ) {

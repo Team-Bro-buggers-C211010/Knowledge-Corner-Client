@@ -12,18 +12,36 @@ const ViewDetails = () => {
     const axiosSecure = useAxiosSecure();
     const [borrowDate, setBorrowDate] = useState('');
     const inputRef = useRef();
+    const [borrowedBook, setBorrowedBook] = useState({});
+    const [alreadyBorrowed, setAlreadyBorrowed] = useState(false);
+    const [change, setChange] = useState(false);
+
     useEffect(() => {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().split('T')[0];
         inputRef.current.value = formattedDate;
         setBorrowDate(formattedDate);
     }, []);
+
     useEffect(() => {
         axiosSecure.get(`/books?book_name=${bookName}`)
             .then(res => {
                 setBook(res.data[0]);
             })
-    }, [bookName, axiosSecure])
+    }, [change])
+
+    useEffect(() => {
+        axiosSecure.get(`/borrowed-books?user_email=${user?.email}&book_name=${bookName}`)
+            .then(res => {
+                setBorrowedBook(res.data[0]);
+            })
+    }, [])
+
+    useEffect(() => {
+        if (borrowedBook?.book_name === bookName) {
+            setAlreadyBorrowed(true);
+        }
+    }, [borrowedBook, bookName]);
 
     const handleBorrowBook = (e) => {
         const form = e.target;
@@ -31,15 +49,25 @@ const ViewDetails = () => {
         const user_email = form.user_email.value;
         const return_date = form.return_date.value;
         const borrow_date = borrowDate;
-        if(borrowDate>return_date){
+        if (borrowDate > return_date) {
             alert("Return date should be greater than borrow date !!!");
             return;
         }
-        const borrow_details = { user_name, user_email,borrow_date, return_date, book_name: book.book_name, book_photo: book.book_photo, book_category: book.book_category };
+        const borrow_details = { user_name, user_email, borrow_date, return_date, book_name: book.book_name, book_photo: book.book_photo, book_category: book.book_category };
         axiosSecure.post(`/borrowed-books`, borrow_details)
             .then(res => {
+                setAlreadyBorrowed(true);
                 form.reset();
                 console.log(res);
+                axiosSecure.patch(`/books?book_name=${bookName}`, {})
+                    .then(res => {
+                        setChange(!change)
+                        console.log(res);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle the error here
+                    });
             })
     }
     return (
@@ -69,7 +97,7 @@ const ViewDetails = () => {
                         <h2 className="md:text-2xl font-medium">Description : <br /><span className="text-sm md:text-lg">{book.book_short_description}</span></h2>
                         <hr className="border-dashed mb-5 mt-5" />
                         <h2 className="md:text-2xl font-medium">Book Content : <br /><span className="text-sm md:text-lg">{book.book_content}</span></h2>
-                        <Link onClick={() => document.getElementById('my_modal_4').showModal()} className="btn mt-5 bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]" disabled={book.book_quantity == 0}>Borrow It</Link>
+                        <Link onClick={() => document.getElementById('my_modal_4').showModal()} className="btn mt-5 bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]" disabled={book.book_quantity == 0 || alreadyBorrowed}>Borrow It</Link>
                         <dialog id="my_modal_4" className="modal">
                             <div className="modal-box w-11/12 max-w-5xl">
                                 <form onSubmit={handleBorrowBook} method="dialog" className="card-body p-0 w-full grid grid-cols-1">
