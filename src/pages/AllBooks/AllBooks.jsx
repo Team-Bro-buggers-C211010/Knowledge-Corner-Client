@@ -45,7 +45,7 @@ const AllBooks = () => {
                     <div className="flex gap-x-2 md:gap-x-4 items-center">
                         <h3 className="text-lg md:text-3xl text-[#FF9800] font-bold">Filter :</h3>
                         <div className="flex border-2 text-sm md:text-lg border-[#404142] text-[#36383a] items-center font-medium bg-[#C6AD8F] p-2">
-                            <Link onClick={() => handleShow("Available")} className="border-r-4 pr-2 md:pr-4 border-[#404142] hover:text-white">Available Books</Link>
+                            <Link onClick={() => handleShow("Available")} className={`border-r-4 pr-2 md:pr-4 border-[#404142] ${show === "Available" ? "text-white" : ""} hover:text-white`}>Available Books</Link>
                             <Link onClick={() => handleShow("All")} className="ml-4 hover:text-white">Reset</Link>
                         </div>
                     </div>
