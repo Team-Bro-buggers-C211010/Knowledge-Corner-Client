@@ -7,13 +7,25 @@ const BorrowedPage = () => {
     const { user } = useContext(AuthContext);
     const [books, setBooks] = useState([]);
     const axiosSecure = useAxiosSecure();
+    const [checkReturn, setCheckReturn] = useState(false);
     useEffect(() => {
         axiosSecure.get(`/borrowed-books?user_email=${user?.email}`)
             .then(res => {
                 setBooks(res.data);
                 console.log(res.data);
             })
-    }, [])
+    }, [checkReturn,axiosSecure, user?.email])
+    const handleReturn = (bookName) => {
+        axiosSecure.delete(`/borrowed-books?book_name=${bookName}`)
+            .then(res => {
+                console.log(res)
+                axiosSecure.patch(`/books/increase?book_name=${bookName}`, {})
+                    .then(res => {
+                        console.log(res)
+                        setCheckReturn(!checkReturn)
+                    })
+            })
+    }
     return (
         <div className=" bg-[#30362F] min-h-screen">
             <div className="min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.2) 100%), url("https://i.ibb.co/wRVvtKh/borrowBG.jpg)` }}>
@@ -38,7 +50,7 @@ const BorrowedPage = () => {
                                     </div>
                                     <hr className="border-dashed border-[#404142]" />
                                     <div className="flex justify-around">
-                                        <Link className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">Return Now</Link>
+                                        <Link onClick={ () => handleReturn(book.book_name)} className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">Return Now</Link>
                                     </div>
                                 </div>
                             </div>

@@ -40,6 +40,8 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => {
+                axiosSecure.post("/logout", {user_email:user.email})
+                .then()
                 let timerInterval;
                 Swal.fire({
                     title: "Log Out Successfully !!!",

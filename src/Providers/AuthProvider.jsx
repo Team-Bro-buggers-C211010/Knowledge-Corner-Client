@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import auth from "../firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth/cordova";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -28,9 +29,20 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     }
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentLoggedUser => {
             setUser(currentLoggedUser);
+
+            const authUser = {email: user.email}
+                // get access token
+                axiosSecure.post('/jwt', authUser) // This withCredentials is important to set cookie in network
+                .then(res => {
+                    console.log(res.data);
+                    if(res.data.success) {
+                        console.log("Token Success")
+                    }
+                })
             setLoading(false);
             console.log(currentLoggedUser);
         })
