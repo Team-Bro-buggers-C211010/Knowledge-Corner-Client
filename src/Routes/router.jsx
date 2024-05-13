@@ -7,8 +7,6 @@ import AddBooks from "../pages/AddBooks/AddBooks";
 import PrivateRoutes from "./PrivateRoutes";
 import Updated from "../pages/Updated/Updated";
 import AllBooks from "../pages/AllBooks/AllBooks";
-import ListView from "../components/ListView/ListView";
-import GridView from "../components/GridView/GridView";
 const router = createBrowserRouter([
     {
         path:"/",
@@ -37,16 +35,6 @@ const router = createBrowserRouter([
             {
                 path: "/all-books",
                 element: <AllBooks></AllBooks>,
-                children: [
-                    {
-                        path: "/all-books",
-                        element: <ListView></ListView>
-                    },
-                    {
-                        path: "/all-books/grid-view",
-                        element: <GridView></GridView>
-                    }
-                ]
             }
         ]
     }

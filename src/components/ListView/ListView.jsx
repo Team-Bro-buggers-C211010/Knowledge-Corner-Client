@@ -3,7 +3,9 @@ import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Rating from "react-rating";
 import { FaStar } from "react-icons/fa";
-const ListView = () => {
+import PropTypes from 'prop-types';
+
+const ListView = ({ allBooks }) => {
     return (
         <div className="mt-10">
             <div className="overflow-x-auto px-2 md:px-0">
@@ -22,27 +24,33 @@ const ListView = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        <tr className="text-[#404142] border-b-2 border-[#404142] md:text-base bg-[#c6bbb0] font-semibold md:font-bold hover:bg-[#404142] hover:text-[#FF9800]">
-                            <th>1</th>
-                            <td><img className="h-20 md:w-16 object-cover object-center" src="https://i.ibb.co/9Tdpck0/Watchmen.webp" alt="Watchmen" /></td>
-                            <td>Watchmen</td>
-                            <td>Alan Moore</td>
-                            <td>Comics</td>
-                            <td><Rating
-                                placeholderRating={4.5}
-                                emptySymbol={<FaStar className="text-gray-200"></FaStar>}
-                                placeholderSymbol={<FaStar className="text-yellow-600"></FaStar>}
-                                readonly
-                            /></td>
-                            <td className="text-xl md:text-3xl font-extrabold"><Link><RiTimelineView></RiTimelineView></Link></td>
-                            <td className="text-xl md:text-3xl font-extrabold"><Link><FaEdit></FaEdit></Link></td>
-                        </tr>
+                        {/* rows */}
+                        {
+                            allBooks.map((book, idx) => <tr key={book._id} className="text-[#404142] border-b-2 border-[#404142] md:text-base bg-[#c6bbb0] font-semibold md:font-bold hover:bg-[#404142] hover:text-[#FF9800]">
+                                <th>{idx + 1}</th>
+                                <td><img className="h-20 w-full object-cover object-center" src={book.book_photo} alt="Watchmen" /></td>
+                                <td>{book.book_name}</td>
+                                <td>{book.book_author}</td>
+                                <td>{book.book_category}</td>
+                                <td className="hover:tooltip hover:tooltip-open hover:tooltip-bottom"
+                                    data-tip={book.book_rating}><Rating
+                                    placeholderRating={book.book_rating}
+                                    emptySymbol={<FaStar className="text-gray-200"></FaStar>}
+                                    placeholderSymbol={<FaStar className="text-yellow-600"></FaStar>}
+                                    readonly
+                                /></td>
+                                <td className="text-xl md:text-3xl font-extrabold"><Link><RiTimelineView></RiTimelineView></Link></td>
+                                <td className="text-xl md:text-3xl font-extrabold"><Link><FaEdit></FaEdit></Link></td>
+                            </tr>)
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     );
+};
+ListView.propTypes = {
+    allBooks: PropTypes.array.isRequired
 };
 
 export default ListView;
