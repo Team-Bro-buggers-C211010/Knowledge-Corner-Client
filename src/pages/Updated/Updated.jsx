@@ -18,7 +18,7 @@ const Updated = () => {
     },[bookName, axiosSecure])
     console.log(book)
     const { user } = useContext(AuthContext);
-    const handleAddBooks = (e) => {
+    const handleUpdateBook = (e) => {
         e.preventDefault();
         const form = e.target;
         const book_name = form.book_name.value;
@@ -47,7 +47,7 @@ const Updated = () => {
                             <h3 className="text-2xl md:text-3xl font-bold text-center">Hey, <span className="text-[#f99500]">{user.displayName}</span> !!!</h3>
                         </div>
                         <h1 className="md:text-2xl font-semibold text-center mt-5">Update your current book details :</h1>
-                        <form onSubmit={handleAddBooks} className="card-body w-full grid grid-cols-1 md:grid-cols-2">
+                        <form onSubmit={handleUpdateBook} className="card-body w-full grid grid-cols-1 md:grid-cols-2">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Name :</span>
