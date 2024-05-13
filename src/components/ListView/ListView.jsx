@@ -5,7 +5,7 @@ import Rating from "react-rating";
 import { FaStar } from "react-icons/fa";
 import PropTypes from 'prop-types';
 
-const ListView = ({ allBooks }) => {
+const ListView = ({ allBooks, role }) => {
     return (
         <div className="mt-10">
             <div className="overflow-x-auto px-2 md:px-0">
@@ -20,7 +20,9 @@ const ListView = ({ allBooks }) => {
                             <th>Category</th>
                             <th>Rating</th>
                             <th>View Details</th>
-                            <th>Update</th>
+                            {
+                                role === "Librarian" && <th>Update</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -34,13 +36,15 @@ const ListView = ({ allBooks }) => {
                                 <td>{book.book_category}</td>
                                 <td className="hover:tooltip hover:tooltip-open hover:tooltip-bottom"
                                     data-tip={book.book_rating}><Rating
-                                    placeholderRating={book.book_rating}
-                                    emptySymbol={<FaStar className="text-gray-200"></FaStar>}
-                                    placeholderSymbol={<FaStar className="text-yellow-600"></FaStar>}
-                                    readonly
-                                /></td>
+                                        placeholderRating={book.book_rating}
+                                        emptySymbol={<FaStar className="text-gray-200"></FaStar>}
+                                        placeholderSymbol={<FaStar className="text-yellow-600"></FaStar>}
+                                        readonly
+                                    /></td>
                                 <td className="text-xl md:text-3xl font-extrabold"><Link><RiTimelineView></RiTimelineView></Link></td>
-                                <td className="text-xl md:text-3xl font-extrabold"><Link><FaEdit></FaEdit></Link></td>
+                                {
+                                    role === "Librarian" && <td className="text-xl md:text-3xl font-extrabold"><Link to={`/update-book/${book.book_name}`}><FaEdit></FaEdit></Link></td>
+                                }
                             </tr>)
                         }
                     </tbody>
@@ -50,7 +54,8 @@ const ListView = ({ allBooks }) => {
     );
 };
 ListView.propTypes = {
-    allBooks: PropTypes.array.isRequired
+    allBooks: PropTypes.array.isRequired,
+    role: PropTypes.string
 };
 
 export default ListView;

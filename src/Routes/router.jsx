@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoutes><AddBooks></AddBooks></PrivateRoutes>
             },
             {
-                path: "/update-book",
+                path: "/update-book/:bookName",
                 element: <PrivateRoutes><Updated></Updated></PrivateRoutes>
             },
             {

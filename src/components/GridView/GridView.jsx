@@ -2,7 +2,7 @@ import { FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-const GridView = ({ allBooks }) => {
+const GridView = ({ allBooks, role }) => {
     return (
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-2 md:px-0">
             {
@@ -28,7 +28,9 @@ const GridView = ({ allBooks }) => {
                         <hr className="border-dashed border-[#404142]" />
                         <div className="flex justify-around">
                             <Link className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">View Details</Link>
-                            <Link className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">Update Details</Link>
+                            {
+                                role === "Librarian" && <Link to={`/update-book/${book.book_name}`} className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">Update Details</Link>
+                            }
                         </div>
                     </div>
                 </div>)
@@ -37,7 +39,8 @@ const GridView = ({ allBooks }) => {
     );
 };
 GridView.propTypes = {
-    allBooks: PropTypes.array.isRequired
+    allBooks: PropTypes.array.isRequired,
+    role: PropTypes.string
 };
 
 export default GridView;

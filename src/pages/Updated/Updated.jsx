@@ -1,11 +1,21 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import updatedBG from "../../images/updatedBG.jpg";
+import { useParams } from "react-router-dom";
 
 const Updated = () => {
-    const { user } = useContext(AuthContext);
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const {bookName} = useParams();
+    const [book, setBook] = useState({});
+    useEffect(()=> {
+        axios.get(`${baseUrl}/books?book_name=${bookName}`)
+            .then(res => {
+                setBook(res.data[0]);
+            })
+    },[baseUrl, bookName])
+    console.log(book)
+    const { user } = useContext(AuthContext);
     const handleAddBooks = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -51,19 +61,19 @@ const Updated = () => {
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Name :</span>
                                 </label>
-                                <input name="book_name" type="text" placeholder="Book Name" className="input input-bordered" required />
+                                <input name="book_name" type="text" defaultValue={book.book_name} placeholder="Book Name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Author Name :</span>
                                 </label>
-                                <input name="book_author" type="text" placeholder="Book Author" className="input input-bordered" required />
+                                <input name="book_author" defaultValue={book.book_author} type="text" placeholder="Book Author" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Category :</span>
                                 </label>
-                                <select name="book_category" className="select select-bordered w-full">
+                                <select name="book_category" value={book.book_category} onChange={(e) => setBook({ ...book, book_category: e.target.value })} className="select select-bordered w-full">
                                     <option disabled selected>Select from the list!</option>
                                     <option>Comics</option>
                                     <option>Computers & Tech</option>
@@ -78,16 +88,16 @@ const Updated = () => {
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Ratings :</span>
                                 </label>
-                                <input name="book_rating" type="number" placeholder="Book Rating(1-5)" className="input input-bordered" required />
+                                <input name="book_rating" defaultValue={book.book_rating} type="number" placeholder="Book Rating(1-5)" className="input input-bordered" required />
                             </div>
                             <div className="form-control col-span-2">
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Book Photo :</span>
                                 </label>
-                                <input name="book_photo" type="text" placeholder="Book Photo URL" className="input input-bordered" required />
+                                <input name="book_photo" defaultValue={book.book_photo} type="text" placeholder="Book Photo URL" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6 md:col-span-2">
-                                <button className="btn bg-[#ea9b25] text-white font-medium hover:bg-base-100 hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Add</button>
+                                <button className="btn bg-[#ea9b25] text-white font-medium hover:bg-base-100 hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Update</button>
                             </div>
                         </form>
                     </div>

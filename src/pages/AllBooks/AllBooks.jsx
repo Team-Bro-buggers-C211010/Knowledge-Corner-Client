@@ -1,15 +1,31 @@
 import { FaListAlt } from "react-icons/fa";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link, NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+// import axios from "axios";
 import ListView from "../../components/ListView/ListView";
 import GridView from "../../components/GridView/GridView";
+import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const AllBooks = () => {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const axiosSecure = useAxiosSecure();
+    // const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const [allBooks, setAllBooks] = useState([]);
     const [view, selectView] = useState("List");
     const [show, setShow] = useState("All");
+    const [role, setRole] = useState(null);
+    const {user} = useContext(AuthContext);
+    useEffect(() => {
+        if (user) {
+            axiosSecure
+                .get(`/users?email=${user?.email}`)
+                .then((res) => {
+                    setRole(res.data[0].role);
+                });
+        } else {
+            setRole(null);
+        }
+    }, [user?.email])
     const handleShow = (checkShow) => {
         setShow(checkShow);
     }
@@ -21,20 +37,20 @@ const AllBooks = () => {
     }
     useEffect(() => {
         if (show === "All") {
-            axios.get(`${baseUrl}/books`)
+            axiosSecure.get(`/books`)
                 .then(res => {
                     setAllBooks(res.data);
-                    console.log(res.data);
+                    // console.log(res.data);
                 })
         }
         else {
-            axios.get(`${baseUrl}/books?book_quantity=0`)
+            axiosSecure.get(`/books?book_quantity=0`)
                 .then(res => {
                     setAllBooks(res.data);
-                    console.log(res.data);
+                    // console.log(res.data);
                 })
         }
-    }, [show, baseUrl])
+    }, [show])
     return (
         <div className="pt-10 bg-[#30362F] min-h-screen">
             <div className="max-w-sm bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
@@ -72,7 +88,7 @@ const AllBooks = () => {
                     </div>
                 </div>
                 {
-                    view === "List" ? <ListView allBooks={allBooks}></ListView> : <GridView allBooks={allBooks}></GridView>
+                    view === "List" ? <ListView role={role} allBooks={allBooks}></ListView> : <GridView role={role} allBooks={allBooks}></GridView>
                 }
             </div>
         </div>

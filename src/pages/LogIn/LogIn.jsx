@@ -24,11 +24,9 @@ const LogIn = () => {
     const { signInUser, signInWithGoogle, setLoading } = useContext(AuthContext);
     const handleSignIn = e => {
         e.preventDefault();
-        const verification = e.target.verification.value;
-        console.log(verification)
         const email = e.target.email.value;
         const password = e.target.password.value;
-        if(role === "Librarian" && verification !== import.meta.env.VITE_ADMIN_CODE){
+        if(role === "Librarian" && e.target.verification.value !== import.meta.env.VITE_ADMIN_CODE){
             alert("Your verification as Librarian is failed");
             return;
         }
