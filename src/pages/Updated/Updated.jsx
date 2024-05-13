@@ -1,19 +1,21 @@
-import axios from "axios";
+// import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import updatedBG from "../../images/updatedBG.jpg";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Updated = () => {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    // const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const {bookName} = useParams();
     const [book, setBook] = useState({});
+    const axiosSecure = useAxiosSecure();
     useEffect(()=> {
-        axios.get(`${baseUrl}/books?book_name=${bookName}`)
+        axiosSecure.get(`/books?book_name=${bookName}`)
             .then(res => {
                 setBook(res.data[0]);
             })
-    },[baseUrl, bookName])
+    },[bookName, axiosSecure])
     console.log(book)
     const { user } = useContext(AuthContext);
     const handleAddBooks = (e) => {
@@ -22,29 +24,18 @@ const Updated = () => {
         const book_name = form.book_name.value;
         const book_photo = form.book_photo.value;
         const book_author = form.book_author.value;
-        const book_quantity = form.book_quantity.value;
         const book_category = form.book_category.value;
         const book_rating = form.book_rating.value;
-        const book_short_description = form.book_short_description.value;
-        const book_content = form.book_content.value;
-        if (book_quantity < 0 || book_rating < 0) {
-            alert("Quantity, Category and Rating should be positive numbers");
-            return;
-        }
         if (book_rating > 5 || book_rating == 0) {
             alert("Rating should be between 1 and 5 !!!");
             return;
         }
-        const bookDetails = { book_name, book_photo, book_author, book_quantity, book_category, book_rating, book_short_description, book_content };
-        console.log(bookDetails);
-        axios.post(`${baseUrl}/books`, bookDetails)
+        const bookDetails = { book_name, book_photo, book_author, book_category, book_rating };
+        // console.log(bookDetails);
+        axiosSecure.put(`/books`, bookDetails)
             .then(res => {
                 console.log(res);
                 alert("Book Added successfully !!!");
-                form.reset();
-                form.querySelectorAll('select').forEach(select => {
-                    select.selectedIndex = 0;
-                });
             })
     }
     return (
@@ -90,7 +81,7 @@ const Updated = () => {
                                 </label>
                                 <input name="book_rating" defaultValue={book.book_rating} type="number" placeholder="Book Rating(1-5)" className="input input-bordered" required />
                             </div>
-                            <div className="form-control col-span-2">
+                            <div className="form-control md:col-span-2">
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Book Photo :</span>
                                 </label>
