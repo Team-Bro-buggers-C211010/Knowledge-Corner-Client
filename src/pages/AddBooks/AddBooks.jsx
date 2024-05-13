@@ -89,7 +89,7 @@ const AddBooks = () => {
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Ratings :</span>
                                 </label>
-                                <input name="book_rating" type="number" placeholder="Book Rating(1-5)" className="input input-bordered" required />
+                                <input name="book_rating" type="text" placeholder="Book Rating(1-5)" className="input input-bordered" required />
                             </div>
                             <div className="form-control md:col-span-2">
                                 <label className="label">

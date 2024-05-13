@@ -25,7 +25,7 @@ const AllBooks = () => {
         } else {
             setRole(null);
         }
-    }, [user?.email])
+    }, [user?.email, axiosSecure, user])
     const handleShow = (checkShow) => {
         setShow(checkShow);
     }
@@ -50,7 +50,7 @@ const AllBooks = () => {
                     // console.log(res.data);
                 })
         }
-    }, [show])
+    }, [show, axiosSecure])
     return (
         <div className="pt-10 bg-[#30362F] min-h-screen">
             <div className="max-w-sm bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">

@@ -1,21 +1,49 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Rating from "react-rating";
 import { FaStar } from "react-icons/fa";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const ViewDetails = () => {
     const { bookName } = useParams();
     const [book, setBook] = useState({});
+    const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
+    const [borrowDate, setBorrowDate] = useState('');
+    const inputRef = useRef();
+    useEffect(() => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0];
+        inputRef.current.value = formattedDate;
+        setBorrowDate(formattedDate);
+    }, []);
     useEffect(() => {
         axiosSecure.get(`/books?book_name=${bookName}`)
             .then(res => {
                 setBook(res.data[0]);
             })
     }, [bookName, axiosSecure])
+
+    const handleBorrowBook = (e) => {
+        const form = e.target;
+        const user_name = form.user_name.value;
+        const user_email = form.user_email.value;
+        const return_date = form.return_date.value;
+        const borrow_date = borrowDate;
+        if(borrowDate>return_date){
+            alert("Return date should be greater than borrow date !!!");
+            return;
+        }
+        const borrow_details = { user_name, user_email,borrow_date, return_date, book_name: book.book_name, book_photo: book.book_photo, book_category: book.book_category };
+        axiosSecure.post(`/borrowed-books`, borrow_details)
+            .then(res => {
+                form.reset();
+                console.log(res);
+            })
+    }
     return (
-        <div className="pt-6 md:pt-10 md:h-[800px] container mx-auto">
+        <div className="pt-6 md:pt-10 md:h-[800px] container mx-auto px-1 md:px-0">
             <div className="card md:card-side bg-base-100 shadow-xl">
                 <figure className="md:h-[800px] md:w-2/5"><img className="h-full w-full object-fill object-center" src={book.book_photo} alt="Album" /></figure>
                 <div className="card-body flex items-center justify-center md:w-3/5">
@@ -38,11 +66,46 @@ const ViewDetails = () => {
                         <h2 className="md:text-2xl font-medium mb-3">Category :<span className="text-[#FF9800]"> {book.book_category}</span></h2>
                         <h2 className="md:text-2xl font-medium mb-3">Quantity :<span className="text-[#FF9800]"> {book.book_quantity}</span></h2>
                         <hr className="border-dashed mb-5 mt-5" />
-                        <h2 className="md:text-2xl font-medium">Description : <br /><span className="md:text-lg">{book.book_short_description}</span></h2>
+                        <h2 className="md:text-2xl font-medium">Description : <br /><span className="text-sm md:text-lg">{book.book_short_description}</span></h2>
                         <hr className="border-dashed mb-5 mt-5" />
-                        <h2 className="md:text-2xl font-medium">Book Content : <br /><span className="md:text-lg">{book.
-                            book_content}</span></h2>
-                        <Link className="btn mt-5 bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">Borrow It</Link>
+                        <h2 className="md:text-2xl font-medium">Book Content : <br /><span className="text-sm md:text-lg">{book.book_content}</span></h2>
+                        <Link onClick={() => document.getElementById('my_modal_4').showModal()} className="btn mt-5 bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]" disabled={book.book_quantity == 0}>Borrow It</Link>
+                        <dialog id="my_modal_4" className="modal">
+                            <div className="modal-box w-11/12 max-w-5xl">
+                                <form onSubmit={handleBorrowBook} method="dialog" className="card-body p-0 w-full grid grid-cols-1">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text md:text-lg font-bold">User Email :</span>
+                                        </label>
+                                        <input name="user_email" value={user?.email} type="text" placeholder="User Email" className="input input-bordered" required />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text md:text-lg font-bold">User Name :</span>
+                                        </label>
+                                        <input name="user_name" value={user?.displayName} type="text" placeholder="User Name" className="input input-bordered" required />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text md:text-lg font-bold">Borrowed Date :</span>
+                                        </label>
+                                        <input name="borrow_date" type="date" value={borrowDate} ref={inputRef} placeholder="Borrowed Date" className="input input-bordered" required />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text md:text-lg font-bold">Return Date :</span>
+                                        </label>
+                                        <input name="return_date" type="date" placeholder="Return Date" className="input input-bordered" required />
+                                    </div>
+                                    <div className="form-control mt-6">
+                                        <button className="btn bg-[#ea9b25] text-white font-medium hover:bg-base-100 hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Borrow Now</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <form method="dialog" className="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
                     </div>
                 </div>
             </div>
