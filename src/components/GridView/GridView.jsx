@@ -27,7 +27,7 @@ const GridView = ({ allBooks, role }) => {
                         </div>
                         <hr className="border-dashed border-[#404142]" />
                         <div className="flex justify-around">
-                            <Link className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">View Details</Link>
+                            <Link to={`/view-details/${book.book_name}`} className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">View Details</Link>
                             {
                                 role === "Librarian" && <Link to={`/update-book/${book.book_name}`} className="btn bg-[#404142] border-2 border-[#d1c2b2] text-[#d1c2b2] hover:rounded-full hover:bg-transparent hover:text-[#404142] hover:border-[#404142]">Update Details</Link>
                             }

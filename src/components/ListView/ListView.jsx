@@ -41,7 +41,7 @@ const ListView = ({ allBooks, role }) => {
                                         placeholderSymbol={<FaStar className="text-yellow-600"></FaStar>}
                                         readonly
                                     /></td>
-                                <td className="text-xl md:text-3xl font-extrabold"><Link><RiTimelineView></RiTimelineView></Link></td>
+                                <td className="text-xl md:text-3xl font-extrabold"><Link to={`/view-details/${book.book_name}`}><RiTimelineView></RiTimelineView></Link></td>
                                 {
                                     role === "Librarian" && <td className="text-xl md:text-3xl font-extrabold"><Link to={`/update-book/${book.book_name}`}><FaEdit></FaEdit></Link></td>
                                 }

@@ -7,16 +7,16 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Updated = () => {
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
-    const {bookName} = useParams();
+    const { bookName } = useParams();
     const [book, setBook] = useState({});
     const axiosSecure = useAxiosSecure();
-    useEffect(()=> {
+    useEffect(() => {
         axiosSecure.get(`/books?book_name=${bookName}`)
             .then(res => {
                 setBook(res.data[0]);
             })
-    },[bookName, axiosSecure])
-    console.log(book)
+    }, [bookName, axiosSecure])
+    // console.log(book)
     const { user } = useContext(AuthContext);
     const handleUpdateBook = (e) => {
         e.preventDefault();
@@ -26,8 +26,8 @@ const Updated = () => {
         const book_author = form.book_author.value;
         const book_category = form.book_category.value;
         const book_rating = form.book_rating.value;
-        if (book_rating > 5 || book_rating == 0) {
-            alert("Rating should be between 1 and 5 !!!");
+        if (isNaN(parseFloat(book_rating)) || parseFloat(book_rating) < 1 || parseFloat(book_rating) > 5) {
+            alert("Rating should be a number between 1 and 5 !!!");
             return;
         }
         const bookDetails = { book_name, book_photo, book_author, book_category, book_rating };
@@ -79,7 +79,7 @@ const Updated = () => {
                                 <label className="label">
                                     <span className="label-text md:text-lg font-bold">Ratings :</span>
                                 </label>
-                                <input name="book_rating" defaultValue={book.book_rating} type="number" placeholder="Book Rating(1-5)" className="input input-bordered" required />
+                                <input name="book_rating" defaultValue={book.book_rating} type="text" placeholder="Book Rating(1-5)" className="input input-bordered" required />
                             </div>
                             <div className="form-control md:col-span-2">
                                 <label className="label">

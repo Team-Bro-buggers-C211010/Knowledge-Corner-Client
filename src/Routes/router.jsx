@@ -7,6 +7,7 @@ import AddBooks from "../pages/AddBooks/AddBooks";
 import PrivateRoutes from "./PrivateRoutes";
 import Updated from "../pages/Updated/Updated";
 import AllBooks from "../pages/AllBooks/AllBooks";
+import ViewDetails from './../pages/ViewDetails/ViewDetails';
 const router = createBrowserRouter([
     {
         path:"/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "/all-books",
                 element: <AllBooks></AllBooks>,
+            },
+            {
+                path: "/view-details/:bookName",
+                element: <PrivateRoutes><ViewDetails></ViewDetails></PrivateRoutes>
             }
         ]
     }

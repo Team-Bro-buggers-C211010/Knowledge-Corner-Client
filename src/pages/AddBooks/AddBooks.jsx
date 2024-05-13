@@ -20,8 +20,8 @@ const AddBooks = () => {
             alert("Quantity, Category and Rating should be positive numbers");
             return;
         }
-        if(book_rating > 5 || book_rating == 0) {
-            alert("Rating should be between 1 and 5 !!!");
+        if (isNaN(parseFloat(book_rating)) || parseFloat(book_rating) < 1 || parseFloat(book_rating) > 5) {
+            alert("Rating should be a number between 1 and 5 !!!");
             return;
         }
         const bookDetails = { book_name, book_photo, book_author, book_quantity, book_category, book_rating, book_short_description, book_content };
