@@ -45,7 +45,7 @@ export default function Banner() {
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
                         <h1 className='text-[#FF9800] text-2xl md:text-5xl'>The Wonderful World of Reading</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>The library is a place for everyone to explore, discover, and engage</p>
-                        <Link className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
+                        <Link to="/all-books" className='mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="gradient-overlay">
@@ -53,7 +53,7 @@ export default function Banner() {
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
                         <h1 className='text-[#FF9800] text-2xl md:text-5xl'>Inspire Lifelong Learning</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>Cultivate a passion for continuous growth with resources that encourage critical thinking and intellectual curiosity.</p>
-                        <Link className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
+                        <Link to="/all-books" className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="gradient-overlay">
@@ -61,7 +61,7 @@ export default function Banner() {
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
                         <h1 className='text-[#FF9800] text-2xl md:text-5xl'>Unleash Your Imagination</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>Immerse yourself in imaginative fiction that transports you to fantastical worlds and sparks your creativity.</p>
-                        <Link className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
+                        <Link to="/all-books" className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="gradient-overlay">
@@ -69,7 +69,7 @@ export default function Banner() {
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
                         <h1 className='text-[#FF9800] text-2xl md:text-5xl'>Unearth Historical Treasures</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>Journey through time with captivating accounts of significant events and influential figures that shaped our world.</p>
-                        <Link className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
+                        <Link to="/all-books" className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Category</Link>
                     </div>
                 </SwiperSlide>
                 <div className="autoplay-progress" slot="container-end">

@@ -42,9 +42,9 @@ const AddBooks = () => {
                 <div className="w-full py-5 md:py-20 px-2 md:px-0">
                     <div className="card shrink-0 shadow-2xl backdrop-blur-sm bg-base-100/50 container mx-auto">
                         <div className="mt-10 bg-base-100/50 border-2 border-base-content px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
-                            <h3 className="text-2xl md:text-3xl font-bold text-center">Hey, <span className="text-[#f99500]">{user.displayName}</span> !!!</h3>
+                            <h3 className="text-2xl md:text-3xl text-base-content font-bold text-center">Hey, <span className="text-[#f99500]">{user.displayName}</span> !!!</h3>
                         </div>
-                        <h1 className="md:text-2xl font-semibold text-center mt-5">Add new collection to your book kingdom :</h1>
+                        <h1 className="md:text-2xl font-semibold text-center mt-5 text-base-content">Add new collection to your book kingdom :</h1>
                         <form onSubmit={handleAddBooks} className="card-body w-full grid grid-cols-1 md:grid-cols-2">
                             <div className="form-control">
                                 <label className="label">
@@ -72,9 +72,9 @@ const AddBooks = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text md:text-lg font-bold">Category :</span>
+                                    <span className="label-text md:text-lg font-bold text-base-content">Category :</span>
                                 </label>
-                                <select name="book_category" className="select select-bordered w-full">
+                                <select name="book_category" className="select select-bordered w-full text-base-content">
                                     <option disabled selected>Select from the list!</option>
                                     <option>Comics</option>
                                     <option>Computers & Tech</option>
@@ -87,7 +87,7 @@ const AddBooks = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text md:text-lg font-bold">Ratings :</span>
+                                    <span className="label-text md:text-lg font-bold text-base-content">Ratings :</span>
                                 </label>
                                 <input name="book_rating" type="text" placeholder="Book Rating(1-5)" className="input input-bordered" required />
                             </div>
