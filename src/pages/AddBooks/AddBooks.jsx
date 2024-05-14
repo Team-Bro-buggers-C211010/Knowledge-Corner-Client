@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import libraryBG from "../../images/libraryBG.jpg";
 import { AuthContext } from "../../Providers/AuthProvider";
-import axios from "axios";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const AddBooks = () => {
     const { user } = useContext(AuthContext);
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const axiosSecure = useAxiosSecure();
     const handleAddBooks = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -16,25 +17,54 @@ const AddBooks = () => {
         const book_rating = parseFloat(form.book_rating.value);
         const book_short_description = form.book_short_description.value;
         const book_content = form.book_content.value;
-        if(book_quantity < 0 || book_rating < 0 ) {
-            alert("Quantity, Category and Rating should be positive numbers");
+        if (book_quantity < 0 || book_rating < 0) {
+            Swal.fire({
+                position: "top",
+                icon: "warning",
+                title: "Quantity, Category and Rating should be positive numbers",
+                showConfirmButton: false,
+                timer: 1500
+            });
             return;
         }
         if (isNaN(parseFloat(book_rating)) || parseFloat(book_rating) < 1 || parseFloat(book_rating) > 5) {
-            alert("Rating should be a number between 1 and 5 !!!");
+            Swal.fire({
+                position: "top",
+                icon: "warning",
+                title: "Rating should be a number between 1 and 5 !!!",
+                showConfirmButton: false,
+                timer: 1500
+            });
             return;
         }
         const bookDetails = { book_name, book_photo, book_author, book_quantity, book_category, book_rating, book_short_description, book_content };
-        console.log(bookDetails);
-        axios.post(`${baseUrl}/books`, bookDetails)
-            .then(res => {
-                console.log(res);
-                alert("Book Added successfully !!!");
-                form.reset();
-                form.querySelectorAll('select').forEach(select => {
-                    select.selectedIndex = 0;
-                });
-            })
+        // console.log(bookDetails);
+        Swal.fire({
+            title: "Are you sure to Add it?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, add it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.post(`/books`, bookDetails)
+                    .then(res => {
+                        // console.log(res);
+                        Swal.fire({
+                            title: "Added!",
+                            text: "Book Added successfully !!!",
+                            icon: "success"
+                        });
+                        form.reset();
+                        form.querySelectorAll('select').forEach(select => {
+                            select.selectedIndex = 0;
+                        });
+                    })
+            }
+        });
+
     }
     return (
         <div className="register min-h-screen flex justify-center items-center">
@@ -77,12 +107,12 @@ const AddBooks = () => {
                                 <select name="book_category" className="select select-bordered w-full text-base-content">
                                     <option disabled selected>Select from the list!</option>
                                     <option>Comics</option>
-                                    <option>Computers & Tech</option>
+                                    <option>Computers</option>
                                     <option>Entertainment</option>
                                     <option>Horror</option>
                                     <option>Kids</option>
-                                    <option>Sci-Fi & Fantasy</option>
-                                    <option>Social Science</option>
+                                    <option>Sci-Fiction</option>
+                                    <option>Social-Science</option>
                                 </select>
                             </div>
                             <div className="form-control">

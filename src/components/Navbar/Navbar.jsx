@@ -3,24 +3,28 @@ import libraryLogo from "../../images/library.svg";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { ClockLoader } from "react-spinners";
+import { ClockLoader, PacmanLoader } from "react-spinners";
 // import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { set } from "firebase/database";
 const Navbar = () => {
     const axiosSecure = useAxiosSecure();
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const { user, loading, logOut } = useContext(AuthContext);
     const [theme, setTheme] = useState("light");
     const [role, setRole] = useState(null);
+    const [loader, setLoader] = useState(true);
     useEffect(() => {
         if (user) {
             axiosSecure
                 .get(`/users?email=${user?.email}`)
                 .then((res) => {
                     setRole(res.data[0].role);
+                    setLoader(false);
                 });
         } else {
             setRole(null);
+            setLoader(false);
         }
     }, [user?.email])
     console.log(role);
@@ -40,9 +44,10 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => {
-                axiosSecure.post("/logout", {user_email:user.email})
-                .then()
+                axiosSecure.post("/logout", { user_email: user.email })
+                    .then()
                 let timerInterval;
+                setLoader(false);
                 Swal.fire({
                     title: "Log Out Successfully !!!",
                     timer: 1000,
@@ -61,6 +66,7 @@ const Navbar = () => {
                 });
             })
             .catch(err => {
+                setLoader(false);
                 let timerInterval;
                 Swal.fire({
                     title: err.message,
@@ -83,16 +89,20 @@ const Navbar = () => {
     const navLinks = <>
         <NavLink to="/" className={({ isActive }) =>
             isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent  border-2 border-[#ea9b25]  rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Home</NavLink>
-        <NavLink to="/all-books" className={({ isActive }) =>
-            isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent  hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>All Books</NavLink>
         {
-            role === "Librarian" && <>
-                <NavLink to="/add-book" className={({ isActive }) =>
-                    isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Add Books</NavLink>
+            user && <>
+                <NavLink to="/all-books" className={({ isActive }) =>
+                    isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent  hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>All Books</NavLink>
+                {
+                    role === "Librarian" && <>
+                        <NavLink to="/add-book" className={({ isActive }) =>
+                            isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Add Books</NavLink>
+                    </>
+                }
+                <NavLink to="/borrow-books" className={({ isActive }) =>
+                    isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Borrowed Books</NavLink>
             </>
         }
-        <NavLink to="/borrow-books" className={({ isActive }) =>
-            isActive ? "btn bg-transparent hover:border-[#ea9b25] hover:bg-transparent border-2 border-[#ea9b25] rounded-lg text-[#FF9800]" : "btn bg-transparent border-0 text-[#FF9800] hover:border-2  hover:bg-transparent hover:rounded-lg hover:text-[#FF9800] hover:border-[#ea9b25]"}>Borrowed Books</NavLink>
     </>
     const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
@@ -107,7 +117,6 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
     return (
         <div className="flex justify-center items-center">
             <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-5 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] border-2 border-base-content container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
@@ -122,8 +131,6 @@ const Navbar = () => {
                             }
                             <div className="inline-block md:hidden mt-1">
                                 {
-                                    loading ? <div className="flex justify-center items-center"><ClockLoader color="#ea9b25" /></div>
-                                        :
                                         user ? <NavLink onClick={handleLogOut} to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
                                             :
                                             <>
@@ -145,8 +152,6 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end hidden md:flex gap-x-1">
                     {
-                        loading ? <div className="flex justify-center items-center"><ClockLoader color="#ea9b25" /></div>
-                            :
                             user ? <>
                                 <NavLink to="/borrow-books" className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-bottom hover:tooltip-success" data-tip={user.displayName}>
                                     <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#ea9b25] avatar" >

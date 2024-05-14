@@ -9,7 +9,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { ImLocation } from "react-icons/im";
 import { Link } from 'react-router-dom';
 
 export default function Banner() {

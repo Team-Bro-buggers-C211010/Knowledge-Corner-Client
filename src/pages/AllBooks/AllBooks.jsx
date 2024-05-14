@@ -7,6 +7,7 @@ import ListView from "../../components/ListView/ListView";
 import GridView from "../../components/GridView/GridView";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { PacmanLoader } from "react-spinners";
 const AllBooks = () => {
     const axiosSecure = useAxiosSecure();
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -15,15 +16,18 @@ const AllBooks = () => {
     const [show, setShow] = useState("All");
     const [role, setRole] = useState(null);
     const {user} = useContext(AuthContext);
+    const [loader, setLoader] = useState(true);
     useEffect(() => {
         if (user) {
             axiosSecure
                 .get(`/users?email=${user?.email}`)
                 .then((res) => {
                     setRole(res.data[0].role);
+                    setLoader(false);
                 });
         } else {
             setRole(null);
+            setLoader(false);
         }
     }, [user?.email, axiosSecure, user])
     const handleShow = (checkShow) => {
@@ -41,16 +45,22 @@ const AllBooks = () => {
                 .then(res => {
                     setAllBooks(res.data);
                     // console.log(res.data);
+                    setLoader(false);
                 })
         }
         else {
             axiosSecure.get(`/books?book_quantity=0`)
                 .then(res => {
                     setAllBooks(res.data);
+                    setLoader(false);
                     // console.log(res.data);
                 })
         }
     }, [show, axiosSecure])
+
+    if(loader) {
+        return <div className="flex justify-center items-center h-screen"><PacmanLoader color="#ff9900" /></div>
+    }
     return (
         <div className="pt-10 bg-[#30362F] min-h-screen">
             <div className="max-w-sm bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">

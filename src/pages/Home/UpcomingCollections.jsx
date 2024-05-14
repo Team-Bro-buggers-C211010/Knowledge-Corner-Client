@@ -1,12 +1,12 @@
 const UpcomingCollections = () => {
     return (
-        <div className="mt-9 md:mt-14 container mx-auto">
+        <div className="mt-9 md:mt-14 container mx-auto px-1 md:px-0">
             <h1 className="text-2xl md:text-4xl text-[#ff9900] font-bold text-center">Upcoming Collection</h1>
-            <p className="text-center text-base-content md:text-lg mt-3">DExciting new books are on the horizon! Check out what is coming soon to our library and be the first to dive into our upcoming collection.</p>
+            <p className="text-center text-base-content md:text-lg mt-3">Exciting new books are on the horizon! Check out what is coming soon to our library and be the first to dive into our upcoming collection.</p>
             <hr className="mt-5 border-2 border-dashed mb-5" />
             {
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div className="card border border-[#13131326] bg-[#d1bf9c] w-full lg:w-96 h-full shadow-xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-2">
+                    <div className="card border border-[#13131326] bg-[#d1bf9c] w-full h-full shadow-xl mx-auto">
                         <figure className="px-6 pt-6">
                             <div className="bg-base-100 w-full  max-h-[230px] rounded-2xl flex justify-center">
                                 <img src={"https://i.ibb.co/hsq359T/The-Catcher-in-the-Rye.png"} alt="Shoes" className="rounded-xl w-full md:w-[326px] max-h-[230px] object-contain" />
@@ -21,7 +21,7 @@ const UpcomingCollections = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card border border-[#13131326] w-full lg:w-96 bg-[#d1bf9c] h-full  shadow-xl mx-auto">
+                    <div className="card border border-[#13131326] w-full bg-[#d1bf9c] h-full  shadow-xl mx-auto">
                         <figure className="px-6 pt-6">
                             <div className="bg-base-100 w-full  max-h-[230px] rounded-2xl flex justify-center">
                                 <img src={"https://i.ibb.co/SmrGYs1/The-Da-Vinci-Code.png"} alt="Shoes" className="rounded-xl w-full md:w-[326px] max-h-[230px] object-contain" />
@@ -36,7 +36,7 @@ const UpcomingCollections = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card border border-[#13131326] w-full lg:w-96 h-full bg-[#d1bf9c] shadow-xl mx-auto">
+                    <div className="card border border-[#13131326] w-full h-full bg-[#d1bf9c] shadow-xl mx-auto">
                         <figure className="px-6 pt-6">
                             <div className="bg-base-100 w-full  max-h-[230px] rounded-2xl flex justify-center">
                                 <img src={"https://i.ibb.co/GdNx02D/The-Great-Gatsby.webp"} alt="Shoes" className="rounded-xl w-full md:w-[326px] max-h-[230px] object-contain" />
@@ -51,7 +51,7 @@ const UpcomingCollections = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card border border-[#13131326] w-full lg:w-96 h-full bg-[#d1bf9c] shadow-xl mx-auto">
+                    <div className="card border border-[#13131326] w-full h-full bg-[#d1bf9c] shadow-xl mx-auto">
                         <figure className="px-6 pt-6">
                             <div className="bg-base-100 w-full  max-h-[230px] rounded-2xl flex justify-center">
                                 <img src={"https://i.ibb.co/SXpJwkg/To-Kill-a-Mockingbir.png"} alt="Shoes" className="rounded-xl w-full md:w-[326px] max-h-[230px] object-contain" />

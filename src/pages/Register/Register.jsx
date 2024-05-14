@@ -70,37 +70,21 @@ const Register = () => {
                 setLoading(true);
 
                 naviGate(location?.state ? location.state : "/");
-                let timerInterval;
                 Swal.fire({
+                    position: "center",
+                    icon: "success",
                     title: "User register successfully !!!",
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval);
-                    }
-                }).then((result) => {
+                    showConfirmButton: false,
+                    timer: 2000
                 });
             })
             .catch(err => {
-                let timerInterval;
                 Swal.fire({
+                    position: "center",
+                    icon: "error",
                     title: "Invalid information or user already created !!!",
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading();
-                        const timer = Swal.getPopup().querySelector("b");
-                        timerInterval = setInterval(() => {
-                            timer.textContent = `${Swal.getTimerLeft()}`;
-                        }, 100);
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval);
-                    }
-                }).then((result) => {
+                    showConfirmButton: false,
+                    timer: 2000
                 });
             })
     }
@@ -109,13 +93,13 @@ const Register = () => {
             <div className="hero-content flex-col">
                 <div className="card shrink-0 w-full text-center max-w-lg shadow-2xl bg-base-100">
                     <h1 className="text-3xl pt-5 mb-3 font-bold text-[#FF9800]">Register {role === "User" ? "as a user" : "as a librarian"} !</h1>
-                    <p className="px-2 md:px-4 text-sm md:text-base font-medium">Join Knowledge-Corner for a world of books spanning various genres. Start reading today!</p>
+                    <p className="px-2 md:px-4 text-sm md:text-base font-medium text-base-content">Join Knowledge-Corner for a world of books spanning various genres. Start reading today!</p>
                     <form onSubmit={handleRegister} className="card-body">
                         <div className="form-control">
                             <label className="label md:text-lg font-semibold">
                                 <span className="label-text">Role</span>
                             </label>
-                            <select className="select select-bordered" onChange={handleRole}>
+                            <select className="select select-bordered text-base-content" onChange={handleRole}>
                                 <option value="User">User</option>
                                 <option value="Librarian">Librarian</option>
                             </select>
@@ -161,7 +145,7 @@ const Register = () => {
                             </label>
                             <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered" required />
                             <Link className="absolute right-14 bottom-[166px]  md:bottom-[166px] text-base-content" onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
-                            <p className="mt-4">Already registerd ? <Link className="text-[#FF9800] font-medium hover:font-bold" to="/login">Login Now</Link></p>
+                            <p className="mt-4 text-base-content">Already registerd ? <Link className="text-[#FF9800] font-medium hover:font-bold" to="/login">Login Now</Link></p>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Register</button>

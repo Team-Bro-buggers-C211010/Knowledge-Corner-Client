@@ -1,6 +1,6 @@
 const AboutUs = () => {
     return (
-        <div className="container mx-auto mt-9 md:mt-14">
+        <div className="pb-10 container mx-auto mt-9 md:mt-14">
             <div className="hero h-[500px]" style={{ backgroundImage: 'url(https://i.ibb.co/dPVvZtb/about.jpg)' }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">

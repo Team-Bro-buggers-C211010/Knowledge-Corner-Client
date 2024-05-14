@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import auth from "../firebase/firebase.config";
-import { GoogleAuthProvider } from "firebase/auth/cordova";
+import { GoogleAuthProvider } from "firebase/auth";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
@@ -34,14 +34,18 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentLoggedUser => {
             setUser(currentLoggedUser);
 
-            const authUser = {email: user.email}
-                // get access token
-                axiosSecure.post('/jwt', authUser) // This withCredentials is important to set cookie in network
+            const authUser = { email: user.email }
+            // get access token
+            axiosSecure.post('/jwt', authUser) // This withCredentials is important to set cookie in network
                 .then(res => {
                     console.log(res.data);
-                    if(res.data.success) {
+                    if (res.data.success) {
+                        setLoading(false);
                         console.log("Token Success")
                     }
+                })
+                .catch(error => {
+                    setLoading(false);
                 })
             setLoading(false);
             console.log(currentLoggedUser);

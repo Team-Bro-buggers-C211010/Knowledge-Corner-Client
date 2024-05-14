@@ -4,6 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import updatedBG from "../../images/updatedBG.jpg";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Updated = () => {
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -27,16 +28,37 @@ const Updated = () => {
         const book_category = form.book_category.value;
         const book_rating = parseFloat(form.book_rating.value);
         if (isNaN(parseFloat(book_rating)) || parseFloat(book_rating) < 1 || parseFloat(book_rating) > 5) {
-            alert("Rating should be a number between 1 and 5 !!!");
+            Swal.fire({
+                position: "top-en",
+                icon: "warning",
+                title: "Rating should be a number between 1 and 5 !!!",
+                showConfirmButton: false,
+                timer: 2000
+            });
             return;
         }
         const bookDetails = { book_name, book_photo, book_author, book_category, book_rating };
-        // console.log(bookDetails);
-        axiosSecure.put(`/books`, bookDetails)
-            .then(res => {
-                console.log(res);
-                alert("Book Added successfully !!!");
-            })
+        Swal.fire({
+            title: "Are you sure to Update it?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.put(`/books`, bookDetails)
+                    .then(res => {
+                        console.log(res);
+                        Swal.fire({
+                            title: "Updated!",
+                            text: "Book Added successfully !!!",
+                            icon: "success"
+                        });
+                    })
+            }
+        });
     }
     return (
         <div className="register min-h-screen flex justify-center items-center">
@@ -67,12 +89,12 @@ const Updated = () => {
                                 <select name="book_category" value={book.book_category} onChange={(e) => setBook({ ...book, book_category: e.target.value })} className="select select-bordered w-full">
                                     <option disabled selected>Select from the list!</option>
                                     <option>Comics</option>
-                                    <option>Computers & Tech</option>
+                                    <option>Computers</option>
                                     <option>Entertainment</option>
                                     <option>Horror</option>
                                     <option>Kids</option>
-                                    <option>Sci-Fi & Fantasy</option>
-                                    <option>Social Science</option>
+                                    <option>Sci-Fiction</option>
+                                    <option>Social-Science</option>
                                 </select>
                             </div>
                             <div className="form-control">

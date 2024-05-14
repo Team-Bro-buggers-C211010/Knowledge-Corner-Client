@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const BorrowedPage = () => {
     const { user } = useContext(AuthContext);
@@ -12,24 +13,31 @@ const BorrowedPage = () => {
         axiosSecure.get(`/borrowed-books?user_email=${user?.email}`)
             .then(res => {
                 setBooks(res.data);
-                console.log(res.data);
+                // console.log(res.data);
             })
     }, [checkReturn,axiosSecure, user?.email])
     const handleReturn = (bookName) => {
         axiosSecure.delete(`/borrowed-books?book_name=${bookName}`)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 axiosSecure.patch(`/books/increase?book_name=${bookName}`, {})
                     .then(res => {
-                        console.log(res)
+                        // console.log(res)
                         setCheckReturn(!checkReturn)
+                        Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            title: "Returned Successfully",
+                            showConfirmButton: false,
+                            timer: 2000
+                          });
                     })
             })
     }
     return (
         <div className=" bg-[#30362F] min-h-screen">
             <div className="min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.2) 100%), url("https://i.ibb.co/wRVvtKh/borrowBG.jpg)` }}>
-                <div className="w-full pt-10 min-h-screen backdrop-blur-sm bg-base-100/10">
+                <div className="w-full pb-10 pt-10 min-h-screen backdrop-blur-sm bg-base-100/10">
                     <div className="max-w-lg bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
                         <h3 className="text-2xl md:text-4xl font-bold text-center text-[#404142]"><span className="text-[#e08908]">{user.displayName}</span> Borrowed :</h3>
                     </div>

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const ListView = ({ allBooks, role }) => {
     return (
-        <div className="mt-10">
+        <div className="mt-10 pb-10">
             <div className="overflow-x-auto px-2 md:px-0">
                 <table className="table border-2 border-[#404142]">
                     {/* head */}
