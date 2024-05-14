@@ -68,6 +68,7 @@ const UpcomingCollections = () => {
                     </div>
                 </div>
             }
+            <hr className="mt-5 border-2 border-dashed mb-5" />
         </div>
     );
 };
