@@ -3,6 +3,7 @@ import libraryBG from "../../images/libraryBG.jpg";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 const AddBooks = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
@@ -68,6 +69,9 @@ const AddBooks = () => {
     }
     return (
         <div className="register min-h-screen flex justify-center items-center">
+            <Helmet>
+                <title>{`Knowledge Corner | Admin - ${user.displayName} | Add Book `}</title>
+            </Helmet>
             <div className="hero min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url(${libraryBG})` }}>
                 <div className="w-full py-5 md:py-20 px-2 md:px-0">
                     <div className="card shrink-0 shadow-2xl backdrop-blur-sm bg-base-100/50 container mx-auto">

@@ -6,6 +6,7 @@ import { FaStar } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { PacmanLoader } from "react-spinners";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ViewDetails = () => {
     const { bookName } = useParams();
@@ -104,6 +105,9 @@ const ViewDetails = () => {
     }
     return (
         <div className="pt-6 md:pt-10 mb-10 min-h-screen container mx-auto px-1 text-base-content">
+            <Helmet>
+                <title>{`${user.displayName} | Books | ${book.book_name}`}</title>
+            </Helmet>
             <div className="card lg:card-side lg:h-[800px] bg-base-100 shadow-xl">
                 <figure className="md:h-[600px] lg:h-[800px] lg:w-2/5"><img className="h-full w-full object-fill object-center" src={book.book_photo} alt="Album" /></figure>
                 <div className="card-body flex items-center justify-center lg:w-3/5">

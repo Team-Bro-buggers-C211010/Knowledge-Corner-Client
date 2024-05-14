@@ -8,6 +8,7 @@ import GridView from "../../components/GridView/GridView";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { PacmanLoader } from "react-spinners";
+import { Helmet } from "react-helmet";
 const AllBooks = () => {
     const axiosSecure = useAxiosSecure();
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -63,6 +64,9 @@ const AllBooks = () => {
     }
     return (
         <div className="pt-10 bg-[#30362F] min-h-screen">
+            <Helmet>
+                <title>{"Knowledge Corner | Home | All Collections"}</title>
+            </Helmet>
             <div className="max-w-sm bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
                 <h3 className="text-2xl md:text-4xl font-bold text-center text-[#404142]">View All Collections : </h3>
             </div>

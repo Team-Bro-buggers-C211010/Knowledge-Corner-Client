@@ -5,6 +5,7 @@ import updatedBG from "../../images/updatedBG.jpg";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Updated = () => {
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -62,6 +63,9 @@ const Updated = () => {
     }
     return (
         <div className="register min-h-screen flex justify-center items-center">
+            <Helmet>
+                <title>{`Knowledge Corner | Admin | Update | ${book.book_name}`}</title>
+            </Helmet>
             <div className="hero min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url(${updatedBG})` }}>
                 <div className="w-full py-5 md:py-20 px-2 md:px-0">
                     <div className="card shrink-0 shadow-2xl backdrop-blur-sm bg-base-100/50 container mx-auto">

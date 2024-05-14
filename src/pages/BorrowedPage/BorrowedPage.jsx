@@ -3,6 +3,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const BorrowedPage = () => {
     const { user } = useContext(AuthContext);
@@ -36,6 +37,9 @@ const BorrowedPage = () => {
     }
     return (
         <div className=" bg-[#30362F] min-h-screen">
+            <Helmet>
+                <title>{`${user.displayName} | Borrowed Books`}</title>
+            </Helmet>
             <div className="min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.2) 100%), url("https://i.ibb.co/wRVvtKh/borrowBG.jpg)` }}>
                 <div className="w-full pb-10 pt-10 min-h-screen backdrop-blur-sm bg-base-100/10">
                     <div className="max-w-lg bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">

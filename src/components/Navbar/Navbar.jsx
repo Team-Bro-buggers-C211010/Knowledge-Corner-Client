@@ -153,21 +153,21 @@ const Navbar = () => {
                 <div className="navbar-end hidden md:flex gap-x-1">
                     {
                             user ? <>
-                                <NavLink to="/borrow-books" className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-bottom hover:tooltip-success" data-tip={user.displayName}>
+                                <NavLink to="/borrow-books" className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-bottom hover:tooltip-success mr-2" data-tip={user.displayName}>
                                     <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#ea9b25] avatar" >
                                         <div className="w-10 rounded-full">
                                             <img src={user.photoURL} alt="User Profile" className="" />
                                         </div>
                                     </div>
                                 </NavLink>
-                                <NavLink onClick={handleLogOut} to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
+                                <NavLink onClick={handleLogOut} to="/login" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
                             </> :
                                 <>
-                                    <NavLink to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
-                                    <NavLink to="/register" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
+                                    <NavLink to="/login" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
+                                    <NavLink to="/register" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
                                 </>
                     }
-                    <label className="swap swap-rotate">
+                    <label className="swap swap-rotate mr-1">
                         {/* this hidden checkbox controls the state */}
                         <input onChange={handleTheme} type="checkbox" className="theme-controller" value="synthwave" />
                         {/* sun icon */}
