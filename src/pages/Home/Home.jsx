@@ -1,9 +1,8 @@
-import { PacmanLoader } from 'react-spinners';
+import Banner from '../../components/Banner/Banner';
 const Home = () => {
     return (
         <div>
-            <h1>Hi from Home page</h1>
-            <PacmanLoader color="#ea9b25" />
+            <Banner></Banner>
         </div>
     );
 };
