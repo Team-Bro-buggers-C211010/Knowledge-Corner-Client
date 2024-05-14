@@ -110,7 +110,7 @@ const Navbar = () => {
 
     return (
         <div className="flex justify-center items-center">
-            <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-5 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
+            <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-5 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] border-2 border-base-content container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-transparent hover:text-[#FF9800] lg:hidden">
