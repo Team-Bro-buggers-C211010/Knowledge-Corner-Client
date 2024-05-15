@@ -10,7 +10,7 @@ Knowledge Corner is a web application designed to serve as a comprehensive libra
 - **Email**: jhankar.hablu.master@ph.com
 - **Password**: Ab1234
 - **Verification Code(Important)**: IAmHabluDeveloper
--- Use can also create a new Librarian using this verification code
+- Use can also create a new Librarian using this verification code
 
 ## Categories I Used :
 - **1. Comics**
