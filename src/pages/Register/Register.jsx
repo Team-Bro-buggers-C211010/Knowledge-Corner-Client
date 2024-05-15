@@ -84,66 +84,66 @@ const Register = () => {
             })
     }
     return (
-        <div className="register hero min-h-screen">
-            <div className="hero-content flex-col">
+        <div className="register hero min-h-screen p-2 md:p-4">
+            <div className="hero-content p-0 flex-col">
                 <div className="card shrink-0 w-full text-center max-w-lg shadow-2xl bg-base-100">
-                    <h1 className="text-3xl pt-5 mb-3 font-bold text-[#FF9800]">Register {role === "User" ? "as a user" : "as a librarian"} !</h1>
+                    <h1 className="text-xl md:text-3xl pt-5 mb-3 font-bold text-[#FF9800]">Register {role === "User" ? "as a user" : "as a librarian"} !</h1>
                     <p className="px-2 md:px-4 text-sm md:text-base font-medium text-base-content font-montserrat">Join Knowledge-Corner for a world of books spanning various genres. Start reading today!</p>
                     <form onSubmit={handleRegister} className="card-body">
                         <div className="form-control">
                             <label className="label md:text-lg font-semibold">
-                                <span className="label-text">Role</span>
+                                <span className="label-text text-sm md:text-base">Role</span>
                             </label>
                             <select className="select select-bordered text-base-content" onChange={handleRole}>
-                                <option value="User">User</option>
-                                <option value="Librarian">Librarian</option>
+                                <option value="User text-sm md:text-base">User</option>
+                                <option value="Librarian text-sm md:text-base">Librarian</option>
                             </select>
                         </div>
                         {
                             role === "Librarian" &&
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text font-semibold">Verify you</span>
+                                    <span className="label-text font-semibold text-sm md:text-base">Verify you</span>
                                 </label>
-                                <input name="verification" type="text" placeholder="Enter the code given by Admin" className="input input-bordered" required />
+                                <input name="verification" type="text" placeholder="Enter the code given by Admin" className="text-sm md:text-base input input-bordered" required />
                             </div>
                         }
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text font-semibold">{
+                                <span className="label-text font-semibold text-sm md:text-base">{
                                     role === "Librarian" ? "Librarian Id" : "User Id"
                                 }</span>
                             </label>
-                            <input type="text" name="id" placeholder={role === "Librarian" ? "Ex- L241105" : "Ex- U241105"} className="input input-bordered" required />
+                            <input type="text" name="id" placeholder={role === "Librarian" ? "Ex- L241105" : "Ex- U241105"} className="input input-bordered text-sm md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text font-semibold">Name</span>
+                                <span className="label-text font-semibold text-sm md:text-base">Name</span>
                             </label>
-                            <input type="text" name="name" placeholder="Your Name" className="input input-bordered" required />
+                            <input type="text" name="name" placeholder="Your Name" className="input input-bordered text-sm md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text font-semibold">Photo URL</span>
+                                <span className="label-text font-semibold text-sm md:text-base">Photo URL</span>
                             </label>
-                            <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered" required />
+                            <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered text-sm md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text font-semibold">Email</span>
+                                <span className="label-text font-semibold text-sm md:text-base">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="Email" className="input input-bordered text-sm md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text font-semibold">Password</span>
+                                <span className="label-text font-semibold text-sm md:text-base">Password</span>
                             </label>
-                            <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered" required />
+                            <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered text-sm md:text-base" required />
                             <Link className="absolute right-14 bottom-[159px]  md:bottom-[166px] text-base-content" onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
                             <p className="mt-4 text-xs md:text-base text-base-content">Already registerd ? <Link className="text-[#FF9800] font-medium hover:font-bold" to="/login">Login Now</Link></p>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Register</button>
+                            <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800] text-sm md:text-base">Register</button>
                         </div>
                     </form>
                 </div>
