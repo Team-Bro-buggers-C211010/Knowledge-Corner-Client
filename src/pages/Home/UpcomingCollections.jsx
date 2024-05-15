@@ -2,7 +2,7 @@ const UpcomingCollections = () => {
     return (
         <div className="mt-9 md:mt-14 container mx-auto px-1 md:px-0">
             <h1 className="text-2xl md:text-4xl text-[#ff9900] font-bold text-center">Upcoming Collection</h1>
-            <p className="text-center text-base-content md:text-lg mt-3">Exciting new books are on the horizon! Check out what is coming soon to our library and be the first to dive into our upcoming collection.</p>
+            <p className="text-center text-base-content md:text-lg mt-3 font-montserrat">Exciting new books are on the horizon! Check out what is coming soon to our library and be the first to dive into our upcoming collection.</p>
             <hr className="mt-5 border-2 border-dashed mb-5" />
             {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-2">
@@ -13,7 +13,7 @@ const UpcomingCollections = () => {
                             </div>
                         </figure>
                         <div className="p-6">
-                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold">The Catcher in the rye</h1>
+                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold font-josefin">The Catcher in the rye</h1>
                             <h3 className=" font-medium md:text-lg">By : J.D. Salinger</h3>
                             <hr className="border-dashed mt-5 mb-5" />
                             <div className='flex justify-between text-[#131313CC] font-medium md:text-lg'>
@@ -28,7 +28,7 @@ const UpcomingCollections = () => {
                             </div>
                         </figure>
                         <div className="p-6">
-                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold">The Da Vinci Code</h1>
+                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold font-josefin">The Da Vinci Code</h1>
                             <h3 className=" font-medium md:text-lg">By : Dan Brown</h3>
                             <hr className="border-dashed mt-5 mb-5" />
                             <div className='flex justify-between text-[#131313CC] font-medium md:text-lg '>
@@ -43,7 +43,7 @@ const UpcomingCollections = () => {
                             </div>
                         </figure>
                         <div className="p-6">
-                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold">The Great Gatsby</h1>
+                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold font-josefin">The Great Gatsby</h1>
                             <h3 className=" font-medium md:text-lg">By : F. Scott Fitzgerald</h3>
                             <hr className="border-dashed mt-5 mb-5" />
                             <div className='flex justify-between text-[#131313CC] md:text-lg font-medium '>
@@ -58,7 +58,7 @@ const UpcomingCollections = () => {
                             </div>
                         </figure>
                         <div className="p-6">
-                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold">To Kill a Mockingbird</h1>
+                            <h1 className="mt-4 mb-4 fontPlayfairDisplay text-lg md:text-2xl font-bold font-josefin">To Kill a Mockingbird</h1>
                             <h3 className=" font-medium md:text-lg">By : Harper Lee</h3>
                             <hr className="border-dashed mt-5 mb-5" />
                             <div className='flex justify-between text-[#131313CC] font-medium md:text-lg'>

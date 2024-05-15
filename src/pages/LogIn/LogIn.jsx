@@ -10,7 +10,6 @@ const LogIn = () => {
     const [eyeCheck, setEyeCheck] = useState(false);
     const [role, setRole] = useState("User");
     const handleRole = (e) => {
-        console.log(e.target.value);
         if (e.target.value === "User") {
             setRole("User");
         }
@@ -110,7 +109,7 @@ const LogIn = () => {
                 <div className="hero-content flex-col">
                     <div className="card shrink-0 w-full text-center max-w-lg shadow-2xl bg-base-100">
                         <h1 className="text-3xl pt-5 mb-3 font-bold text-[#FF9800]">Login {role === "User" ? "as a user" : "as a librarian"} !</h1>
-                        <p className="px-2 md:px-4 text-sm md:text-base text-base-content font-medium">Welcome back! Log in to access our school library extensive collection of books. Dive into knowledge with just a click!</p>
+                        <p className="px-2 md:px-4 text-sm md:text-base text-base-content font-medium font-montserrat">Welcome back! Log in to access our school library extensive collection of books. Dive into knowledge with just a click!</p>
                         <form onSubmit={handleSignIn} className="card-body">
                             <div className="form-control">
                                 <label className="label">

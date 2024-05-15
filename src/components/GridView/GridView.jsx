@@ -6,9 +6,9 @@ const GridView = ({ allBooks, role }) => {
     return (
         <div className="mt-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-2 md:px-0">
             {
-                allBooks.map((book, idx) => <div key={idx} className="card card-compact w-full shadow-lg shadow-slate-50 bg-[#d1bf9c] rounded-b-none">
+                allBooks.map((book, idx) => <div key={idx} className="font-montserrat card card-compact w-full shadow-lg shadow-slate-50 bg-[#d1bf9c] rounded-b-none">
                     <div className="card-body text-[#404142]">
-                        <h2 className="card-title md:h-20 justify-center text-lg md:text-xl font-extrabold hover:text-[#e98f09]">{book.book_name}</h2>
+                        <h2 className="card-title md:h-20 justify-center text-lg md:text-xl font-extrabold hover:text-[#e98f09] font-josefin">{book.book_name}</h2>
                         <p className="md:text-lg">by <span className="font-bold">{book.book_author}</span></p>
                     </div>
                     <figure className="h-72"><img className="h-full w-full object-fill object-center" src={book.book_photo} alt="Shoes" /></figure>

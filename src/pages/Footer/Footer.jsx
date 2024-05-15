@@ -11,20 +11,20 @@ const Footer = () => {
             <footer className="footer flex flex-col md:flex-row justify-around p-10 bg-[#d1bf9c] text-black border-y-2 border-t-white  rounded-t-lg border-base-100 ">
                 <aside>
                     <img className="w-20" src={logo} alt="" />
-                    <p className="text-[#404142] text-lg font-Roboto"><span className="text-2xl font-bold font-Poppins text-[#f3701d]">Knowledge Corner</span><br /> - Gather Knowledge with Passion</p>
+                    <p className="text-[#404142] text-lg font-josefin"><span className="text-2xl font-bold text-[#f3701d] font-poppins">Knowledge Corner</span><br /> - Gather Knowledge with Passion</p>
                 </aside>
                 <nav>
                     <h1 className="text-lg font-semibold">Contact Us - </h1>
-                    <h1 className="font-medium text-base">- Call 24/7 for any help</h1>
-                    <p className="text-base md:text-lg font-bold"> +00 123 456 789</p>
-                    <h1 className="font-medium text-base">- Mail to our support team</h1>
-                    <p className="text-base md:text-lg font-bold">support@domain.com</p>
+                    <h1 className="font-medium text-base font-josefin">- Call 24/7 for any help</h1>
+                    <p className="text-base md:text-lg font-bold font-montserrat"> +00 123 456 789</p>
+                    <h1 className="font-medium text-base font-josefin">- Mail to our support team</h1>
+                    <p className="text-base md:text-lg font-bold font-montserrat">support@domain.com</p>
                 </nav>
             </footer>
             <footer className="footer bg-[#a38371] items-center p-4 text-black">
                 <aside className="items-center grid-flow-col font-bold">
                     <FaHashtag className="h-5"></FaHashtag>
-                    <p className="font-Montserrat text-black">Copyright © 2024 - All right reserved by Knowledge Corner</p>
+                    <p className="font-montserrat text-black">Copyright © 2024 - All right reserved by Knowledge Corner</p>
                 </aside>
                 <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
                     <Link><TbBrandGmail className="h-5 md:h-7 w-5 md:w-7 text-black hover:text-base-100" /></Link>

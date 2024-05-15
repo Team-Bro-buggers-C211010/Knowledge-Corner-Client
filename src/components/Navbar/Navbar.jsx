@@ -3,31 +3,25 @@ import libraryLogo from "../../images/library.svg";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { ClockLoader, PacmanLoader } from "react-spinners";
 // import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { set } from "firebase/database";
 const Navbar = () => {
     const axiosSecure = useAxiosSecure();
     // const baseUrl = import.meta.env.VITE_API_BASE_URL;
-    const { user, loading, logOut } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [theme, setTheme] = useState("light");
     const [role, setRole] = useState(null);
-    const [loader, setLoader] = useState(true);
     useEffect(() => {
         if (user) {
             axiosSecure
                 .get(`/users?email=${user?.email}`)
                 .then((res) => {
                     setRole(res.data[0].role);
-                    setLoader(false);
                 });
         } else {
             setRole(null);
-            setLoader(false);
         }
     }, [user?.email])
-    console.log(role);
     useEffect(() => {
         localStorage.setItem("theme", theme);
         const localTheme = localStorage.getItem("theme");
@@ -47,7 +41,6 @@ const Navbar = () => {
                 axiosSecure.post("/logout", { user_email: user.email })
                     .then()
                 let timerInterval;
-                setLoader(false);
                 Swal.fire({
                     title: "Log Out Successfully !!!",
                     timer: 1000,
@@ -66,7 +59,6 @@ const Navbar = () => {
                 });
             })
             .catch(err => {
-                setLoader(false);
                 let timerInterval;
                 Swal.fire({
                     title: err.message,
@@ -118,7 +110,7 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex font-montserrat justify-center items-center">
             <div className={`navbar fixed top-0 items-center w-full text-[#C6AD8F] z-50 py-5 transition-colors duration-300 ${scrolled ? 'bg-[#36383a] border-2 border-base-content container mx-auto rounded-full mt-5' : 'bg-[#484239]'}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -141,10 +133,10 @@ const Navbar = () => {
                             </div>
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm md:text-xl lg:text-2xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
+                    <Link to="/" className="btn btn-ghost hover:bg-transparent text-sm md:text-xl lg:text-2xl hover:border-2 rounded-xl hover:border-[#ea9b25] flex gap-x-1 md:gap-x-2 items-center text-[#FF9800] font-bold font-poppins"> <div className=""><img className="h-5 md:h-12" src={libraryLogo} alt="library logo" /></div> <div><span className="text-[#C6AD8F]">Knowledge</span> Corner</div></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal text-sm lg:text-base px-1 ml-20 bg-transparent items-center gap-x-2 lg:gap-x-5 font-bold">
+                    <ul className="font-montserrat menu menu-horizontal text-sm lg:text-base px-1 ml-20 bg-transparent items-center gap-x-2 lg:gap-x-5 font-bold">
                         {
                             navLinks
                         }

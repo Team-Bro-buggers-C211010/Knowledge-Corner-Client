@@ -78,7 +78,6 @@ const ViewDetails = () => {
             .then(res => {
                 setAlreadyBorrowed(true);
                 form.reset();
-                console.log(res);
                 axiosSecure.patch(`/books?book_name=${bookName}`, {})
                     .then(res => {
                         setChange(!change)
@@ -89,7 +88,6 @@ const ViewDetails = () => {
                             showConfirmButton: false,
                             timer: 2000
                           });
-                        console.log(res);
                     })
                     .catch(error => {
                         Swal.fire({
@@ -108,11 +106,11 @@ const ViewDetails = () => {
             <Helmet>
                 <title>{`${user.displayName} | Books | ${book.book_name}`}</title>
             </Helmet>
-            <div className="card lg:card-side lg:h-[800px] bg-base-100 shadow-xl">
+            <div className="card lg:card-side font-montserrat lg:h-[800px] bg-base-100 shadow-xl">
                 <figure className="md:h-[600px] lg:h-[800px] lg:w-2/5"><img className="h-full w-full object-fill object-center" src={book.book_photo} alt="Album" /></figure>
                 <div className="card-body flex items-center justify-center lg:w-3/5">
                     <div className="">
-                        <h1 className="card-title md:text-2xl lg:text-5xl">{book.book_name}</h1>
+                        <h1 className="card-title md:text-2xl lg:text-5xl font-josefin">{book.book_name}</h1>
                         <div className="flex items-center gap-x-2 md:text-lg lg:text-2xl mt-5">
                             <h2 className="md:text-lg lg:text-2xl font-medium">Rating :</h2>
                             <div className="hover:tooltip hover:tooltip-open hover:tooltip-right"
@@ -126,9 +124,9 @@ const ViewDetails = () => {
                             </div>
                         </div>
                         <hr className="border-dashed mb-5 mt-5" />
-                        <h2 className="md:text-lg lg:text-2xl font-medium mb-3">Author :<span className="text-[#FF9800]"> {book.book_author}</span></h2>
-                        <h2 className="md:text-lg lg:text-2xl font-medium mb-3">Category :<span className="text-[#FF9800]"> {book.book_category}</span></h2>
-                        <h2 className="md:text-lg lg:text-2xl font-medium mb-3">Quantity :<span className="text-[#FF9800]"> {book.book_quantity}</span></h2>
+                        <h2 className="md:text-lg lg:text-2xl font-medium mb-3">Author :<span className="text-[#FF9800] font-josefin"> {book.book_author}</span></h2>
+                        <h2 className="md:text-lg lg:text-2xl font-medium mb-3">Category :<span className="text-[#FF9800] font-josefin"> {book.book_category}</span></h2>
+                        <h2 className="md:text-lg lg:text-2xl font-medium mb-3">Quantity :<span className="text-[#FF9800] font-josefin"> {book.book_quantity}</span></h2>
                         <hr className="border-dashed mb-5 mt-5" />
                         <h2 className="md:text-lg lg:text-2xl font-medium">Description : <br /><span className="text-sm md:text-lg">{book.book_short_description}</span></h2>
                         <hr className="border-dashed mb-5 mt-5" />

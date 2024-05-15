@@ -6,10 +6,8 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
-import axios from "axios";
-// import useAxiosSecure from './../../hooks/useAxiosSecure';
+import useAxiosSecure from './../../hooks/useAxiosSecure';
 const Register = () => {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const location = useLocation();
     const { setUser, setLoading } = useContext(AuthContext);
     const { createUser } = useContext(AuthContext);
@@ -18,7 +16,6 @@ const Register = () => {
     const [role, setRole] = useState("User");
     const adminCode = import.meta.env.VITE_ADMIN_CODE;
     const handleRole = (e) => {
-        console.log(e.target.value);
         if (e.target.value === "User") {
             setRole("User");
         }
@@ -27,7 +24,7 @@ const Register = () => {
         }
     }
 
-    // const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     const handleRegister = (e) => {
         e.preventDefault();
         const id = e.target.id.value;
@@ -40,7 +37,6 @@ const Register = () => {
             return;
         }
         const user = { id, name, photo, email, role };
-        console.log(user);
         if (password.length < 6) {
             toast.error("Password should be at least 6 characters");
             return;
@@ -55,9 +51,8 @@ const Register = () => {
         }
         createUser(email, password)
             .then(res => {
-                axios.post(`${baseUrl}/users`, user)
+                axiosSecure.post(`/users`, user)
                     .then(res => {
-                        console.log(res);
                     })
                 updateProfile(res.user, {
                     displayName: name,
@@ -93,7 +88,7 @@ const Register = () => {
             <div className="hero-content flex-col">
                 <div className="card shrink-0 w-full text-center max-w-lg shadow-2xl bg-base-100">
                     <h1 className="text-3xl pt-5 mb-3 font-bold text-[#FF9800]">Register {role === "User" ? "as a user" : "as a librarian"} !</h1>
-                    <p className="px-2 md:px-4 text-sm md:text-base font-medium text-base-content">Join Knowledge-Corner for a world of books spanning various genres. Start reading today!</p>
+                    <p className="px-2 md:px-4 text-sm md:text-base font-medium text-base-content font-montserrat">Join Knowledge-Corner for a world of books spanning various genres. Start reading today!</p>
                     <form onSubmit={handleRegister} className="card-body">
                         <div className="form-control">
                             <label className="label md:text-lg font-semibold">

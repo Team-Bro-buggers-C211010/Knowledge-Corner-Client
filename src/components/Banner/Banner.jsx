@@ -19,7 +19,7 @@ export default function Banner() {
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };
     return (
-        <div className='h-screen md:h-[700px] relative flex justify-center items-center'>
+        <div className='font-montserrat h-screen md:h-[700px] relative flex justify-center items-center'>
             <Swiper
                 style={{
                     '--swiper-navigation-color': '#FF9800',
@@ -42,7 +42,7 @@ export default function Banner() {
                 <SwiperSlide className="gradient-overlay">
                     <img className='relative' src="https://i.ibb.co/rkzBGfw/slide3.jpg" alt="Slide 1" />
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
-                        <h1 className='text-[#FF9800] text-2xl md:text-5xl'>The Wonderful World of Reading</h1>
+                        <h1 className='text-[#FF9800] text-2xl md:text-5xl font-josefin'>The Wonderful World of Reading</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>The library is a place for everyone to explore, discover, and engage</p>
                         <Link to="/all-books" className='mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Collections</Link>
                     </div>
@@ -50,7 +50,7 @@ export default function Banner() {
                 <SwiperSlide className="gradient-overlay">
                     <img className='relative' src="https://i.ibb.co/TL446kH/slide2.jpg" alt="Slide 2" />
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
-                        <h1 className='text-[#FF9800] text-2xl md:text-5xl'>Inspire Lifelong Learning</h1>
+                        <h1 className='text-[#FF9800] text-2xl md:text-5xl font-josefin'>Inspire Lifelong Learning</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>Cultivate a passion for continuous growth with resources that encourage critical thinking and intellectual curiosity.</p>
                         <Link to="/all-books" className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Collections</Link>
                     </div>
@@ -66,7 +66,7 @@ export default function Banner() {
                 <SwiperSlide className="gradient-overlay">
                     <img className='relative' src="https://i.ibb.co/9YTMJWB/slide4.jpg" alt="Slide 4" />
                     <div className='absolute text-start md:w-1/2 lg:w-1/3 z-20'>
-                        <h1 className='text-[#FF9800] text-2xl md:text-5xl'>Unearth Historical Treasures</h1>
+                        <h1 className='text-[#FF9800] text-2xl md:text-5xl font-josefin'>Unearth Historical Treasures</h1>
                         <p className='mt-5 text-white text-lg md:text-2xl'>Journey through time with captivating accounts of significant events and influential figures that shaped our world.</p>
                         <Link to="/all-books" className=' mt-5 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent'>Explore Collections</Link>
                     </div>

@@ -38,17 +38,14 @@ const AuthProvider = ({ children }) => {
             // get access token
             axiosSecure.post('/jwt', authUser) // This withCredentials is important to set cookie in network
                 .then(res => {
-                    console.log(res.data);
                     if (res.data.success) {
                         setLoading(false);
-                        console.log("Token Success")
                     }
                 })
                 .catch(error => {
                     setLoading(false);
                 })
             setLoading(false);
-            console.log(currentLoggedUser);
         })
         return () => {
             unsubscribe();

@@ -39,7 +39,6 @@ const AddBooks = () => {
             return;
         }
         const bookDetails = { book_name, book_photo, book_author, book_quantity, book_category, book_rating, book_short_description, book_content };
-        // console.log(bookDetails);
         Swal.fire({
             title: "Are you sure to Add it?",
             text: "You won't be able to revert this!",
@@ -52,7 +51,6 @@ const AddBooks = () => {
             if (result.isConfirmed) {
                 axiosSecure.post(`/books`, bookDetails)
                     .then(res => {
-                        // console.log(res);
                         Swal.fire({
                             title: "Added!",
                             text: "Book Added successfully !!!",
@@ -72,11 +70,11 @@ const AddBooks = () => {
             <Helmet>
                 <title>{`Knowledge Corner | Admin - ${user.displayName} | Add Book `}</title>
             </Helmet>
-            <div className="hero min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url(${libraryBG})` }}>
+            <div className="hero font-montserrat min-h-screen bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url(${libraryBG})` }}>
                 <div className="w-full py-5 md:py-20 px-2 md:px-0">
                     <div className="card shrink-0 shadow-2xl backdrop-blur-sm bg-base-100/50 container mx-auto">
                         <div className="mt-10 bg-base-100/50 border-2 border-base-content px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
-                            <h3 className="text-2xl md:text-3xl text-base-content font-bold text-center">Hey, <span className="text-[#f99500]">{user.displayName}</span> !!!</h3>
+                            <h3 className="text-2xl md:text-3xl text-base-content font-bold text-center">Hey, <span className="text-[#f99500] font-josefin">{user.displayName}</span> !!!</h3>
                         </div>
                         <h1 className="md:text-2xl font-semibold text-center mt-5 text-base-content">Add new collection to your book kingdom :</h1>
                         <form onSubmit={handleAddBooks} className="card-body w-full grid grid-cols-1 md:grid-cols-2">
