@@ -95,8 +95,8 @@ const Register = () => {
                                 <span className="label-text text-sm md:text-base">Role</span>
                             </label>
                             <select className="select select-bordered text-base-content" onChange={handleRole}>
-                                <option value="User text-sm md:text-base">User</option>
-                                <option value="Librarian text-sm md:text-base">Librarian</option>
+                                <option value="User text-xs md:text-base">User</option>
+                                <option value="Librarian text-xs md:text-base">Librarian</option>
                             </select>
                         </div>
                         {
@@ -105,7 +105,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text font-semibold text-sm md:text-base">Verify you</span>
                                 </label>
-                                <input name="verification" type="text" placeholder="Enter the code given by Admin" className="text-sm md:text-base input input-bordered" required />
+                                <input name="verification" type="text" placeholder="Enter the code given by Admin" className="text-xs md:text-base input input-bordered" required />
                             </div>
                         }
                         <div className="form-control">
@@ -114,36 +114,36 @@ const Register = () => {
                                     role === "Librarian" ? "Librarian Id" : "User Id"
                                 }</span>
                             </label>
-                            <input type="text" name="id" placeholder={role === "Librarian" ? "Ex- L241105" : "Ex- U241105"} className="input input-bordered text-sm md:text-base" required />
+                            <input type="text" name="id" placeholder={role === "Librarian" ? "Ex- L241105" : "Ex- U241105"} className="input input-bordered text-xs md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold text-sm md:text-base">Name</span>
                             </label>
-                            <input type="text" name="name" placeholder="Your Name" className="input input-bordered text-sm md:text-base" required />
+                            <input type="text" name="name" placeholder="Your Name" className="input input-bordered text-xs md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold text-sm md:text-base">Photo URL</span>
                             </label>
-                            <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered text-sm md:text-base" required />
+                            <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered text-xs md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold text-sm md:text-base">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="Email" className="input input-bordered text-sm md:text-base" required />
+                            <input type="email" name="email" placeholder="Email" className="input input-bordered text-xs md:text-base" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold text-sm md:text-base">Password</span>
                             </label>
-                            <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered text-sm md:text-base" required />
+                            <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered text-xs md:text-base" required />
                             <Link className="absolute right-14 bottom-[159px]  md:bottom-[166px] text-base-content" onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
                             <p className="mt-4 text-xs md:text-base text-base-content">Already registerd ? <Link className="text-[#FF9800] font-medium hover:font-bold" to="/login">Login Now</Link></p>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800] text-sm md:text-base">Register</button>
+                            <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800] text-xs md:text-base">Register</button>
                         </div>
                     </form>
                 </div>
