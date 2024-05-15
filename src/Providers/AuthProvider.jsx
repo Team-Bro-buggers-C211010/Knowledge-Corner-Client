@@ -35,16 +35,18 @@ const AuthProvider = ({ children }) => {
             setUser(currentLoggedUser);
 
             const authUser = { email: user.email }
-            // get access token
-            axiosSecure.post('/jwt', authUser) // This withCredentials is important to set cookie in network
-                .then(res => {
-                    if (res.data.success) {
+            if (currentLoggedUser) {
+                // get access token
+                axiosSecure.post('/jwt', authUser) // This withCredentials is important to set cookie in network
+                    .then(res => {
+                        if (res.data.success) {
+                            setLoading(false);
+                        }
+                    })
+                    .catch(error => {
                         setLoading(false);
-                    }
-                })
-                .catch(error => {
-                    setLoading(false);
-                })
+                    })
+            }
             setLoading(false);
         })
         return () => {

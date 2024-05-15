@@ -139,8 +139,8 @@ const Register = () => {
                                 <span className="label-text font-semibold">Password</span>
                             </label>
                             <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered" required />
-                            <Link className="absolute right-14 bottom-[166px]  md:bottom-[166px] text-base-content" onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
-                            <p className="mt-4 text-base-content">Already registerd ? <Link className="text-[#FF9800] font-medium hover:font-bold" to="/login">Login Now</Link></p>
+                            <Link className="absolute right-14 bottom-[159px]  md:bottom-[166px] text-base-content" onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
+                            <p className="mt-4 text-xs md:text-base text-base-content">Already registerd ? <Link className="text-[#FF9800] font-medium hover:font-bold" to="/login">Login Now</Link></p>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Register</button>

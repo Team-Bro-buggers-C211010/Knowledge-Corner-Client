@@ -140,8 +140,8 @@ const LogIn = () => {
                                     <span className="label-text font-semibold">Password</span>
                                 </label>
                                 <input name="password" type={eyeCheck ? "text" : "password"} placeholder="Password" className="input input-bordered" required />
-                                <Link className={`absolute right-14 ${role === "Librarian" ? "bottom-[140px]" : "bottom-[252px]  md:bottom-[252px]"} text-base-content`} onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
-                                <p className="mt-4 text-base-content">Get your library access ! <Link className="text-[#FF9800] font-medium hover:font-bold" to="/register">Register Now</Link></p>
+                                <Link className={`absolute right-14 ${role === "Librarian" ? "bottom-[140px] md:bottom-[150px]" : "bottom-[250px]  md:bottom-[259px]"} text-base-content`} onClick={() => setEyeCheck(!eyeCheck)}>{eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />}</Link>
+                                <p className="mt-4 mb-2 text-xs md:text-base text-base-content">Get your library access ! <Link className="text-[#FF9800] font-medium hover:font-bold" to="/register">Register Now</Link></p>
                             </div>
                             <div className="form-control">
                                 <button className="btn bg-[#ea9b25] text-white hover:bg-white hover:border-2 hover:border-[#ea9b25] hover:text-[#FF9800]">Login</button>
