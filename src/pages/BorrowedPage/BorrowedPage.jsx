@@ -15,7 +15,7 @@ const BorrowedPage = () => {
             .then(res => {
                 setBooks(res.data);
             })
-    }, [checkReturn, axiosSecure, user?.email])
+    }, [axiosSecure, user?.email])
     const handleReturn = (bookName) => {
         axiosSecure.delete(`/borrowed-books?book_name=${bookName}`)
             .then(res => {
