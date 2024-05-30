@@ -64,7 +64,7 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage></ErrorPage>
             },
             {
-                path: "/my-profile/:profileName",
+                path: "/my-profile/:userMail",
                 element: <PrivateRoutes><Profile></Profile></PrivateRoutes>,
                 errorElement: <ErrorPage></ErrorPage>
             }

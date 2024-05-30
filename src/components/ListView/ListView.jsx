@@ -28,7 +28,7 @@ const ListView = ({ allBooks, role }) => {
                     <tbody>
                         {/* rows */}
                         {
-                            allBooks.map((book, idx) => <tr key={book._id} className="text-[#404142] border-b-2 border-[#404142] md:text-base bg-[#c6bbb0] font-semibold md:font-bold hover:bg-[#404142] hover:text-[#FF9800]">
+                            allBooks.map((book, idx) => <tr key={book._id} className="text-[4#04142] border-b-2 border-[#404142] md:text-base bg-[#c6bbb0] font-semibold md:font-bold hover:bg-[#404142] hover:text-[#FF9800]">
                                 <th>{idx + 1}</th>
                                 <td><img className="h-20 w-full object-cover object-center" src={book.book_photo} alt="Watchmen" /></td>
                                 <td>{book.book_name}</td>

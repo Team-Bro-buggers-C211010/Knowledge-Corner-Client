@@ -123,12 +123,12 @@ const Navbar = () => {
                             }
                             <div className="inline-block md:hidden mt-1">
                                 {
-                                        user ? <NavLink onClick={handleLogOut} to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
-                                            :
-                                            <>
-                                                <NavLink to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
-                                                <NavLink to="/register" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
-                                            </>
+                                    user ? <NavLink onClick={handleLogOut} to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
+                                        :
+                                        <>
+                                            <NavLink to="/login" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
+                                            <NavLink to="/register" className="btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
+                                        </>
                                 }
                             </div>
                         </ul>
@@ -144,20 +144,20 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end hidden md:flex gap-x-1">
                     {
-                            user ? <>
-                                <NavLink to="/borrow-books" className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-bottom hover:tooltip-success mr-2" data-tip={user.displayName}>
-                                    <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#ea9b25] avatar" >
-                                        <div className="w-10 rounded-full">
-                                            <img src={user.photoURL} alt="User Profile" className="" />
-                                        </div>
+                        user ? <>
+                            <NavLink to={`/my-profile/${user.email}`} className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-bottom hover:tooltip-success mr-2" data-tip={user.displayName}>
+                                <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#ea9b25] avatar" >
+                                    <div className="w-10 rounded-full">
+                                        <img src={user.photoURL} alt="User Profile" className="" />
                                     </div>
-                                </NavLink>
-                                <NavLink onClick={handleLogOut} to="/login" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
-                            </> :
-                                <>
-                                    <NavLink to="/login" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
-                                    <NavLink to="/register" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
-                                </>
+                                </div>
+                            </NavLink>
+                            <NavLink onClick={handleLogOut} to="/login" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log Out</NavLink>
+                        </> :
+                            <>
+                                <NavLink to="/login" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Log In</NavLink>
+                                <NavLink to="/register" className="mr-2 btn text-white bg-[#C6AD8F] rounded-full hover:border hover:border-[#ea9b25] hover:text-[#FF9800] hover:bg-transparent">Register</NavLink>
+                            </>
                     }
                     <label className="swap swap-rotate mr-1">
                         {/* this hidden checkbox controls the state */}
@@ -171,7 +171,7 @@ const Navbar = () => {
                 <div className="navbar-end flex md:hidden gap-x-1">
                     {
                         user && <div className="ml-2 dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-left hover:tooltip-success" data-tip={user.displayName} >
-                            <NavLink to="/borrow-books" tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#ea9b25] avatar">
+                            <NavLink to={`/my-profile/${user.email}`} tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#ea9b25] avatar">
                                 <div className="w-6 rounded-full">
                                     <img alt="User Profile" src={user.photoURL} />
                                 </div>
