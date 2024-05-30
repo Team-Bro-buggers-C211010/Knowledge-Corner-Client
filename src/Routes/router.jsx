@@ -11,6 +11,7 @@ import ViewDetails from './../pages/ViewDetails/ViewDetails';
 import BorrowedPage from "../pages/BorrowedPage/BorrowedPage";
 import BookCategory from "../pages/BookCategory/BookCategory";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Profile from "../pages/Profile/Profile";
 const router = createBrowserRouter([
     {
         path:"/",
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
             {
                 path: "/category/:categoryName",
                 element: <PrivateRoutes><BookCategory></BookCategory></PrivateRoutes>,
+                errorElement: <ErrorPage></ErrorPage>
+            },
+            {
+                path: "/my-profile/:profileName",
+                element: <PrivateRoutes><Profile></Profile></PrivateRoutes>,
                 errorElement: <ErrorPage></ErrorPage>
             }
         ]
