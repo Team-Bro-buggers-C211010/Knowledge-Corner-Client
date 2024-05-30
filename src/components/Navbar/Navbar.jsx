@@ -171,7 +171,7 @@ const Navbar = () => {
                 <div className="navbar-end flex md:hidden gap-x-1">
                     {
                         user && <div className="ml-2 dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-left hover:tooltip-success" data-tip={user.displayName} >
-                            <NavLink to="/my-list" tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#ea9b25] avatar">
+                            <NavLink to="/borrow-books" tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#ea9b25] avatar">
                                 <div className="w-6 rounded-full">
                                     <img alt="User Profile" src={user.photoURL} />
                                 </div>

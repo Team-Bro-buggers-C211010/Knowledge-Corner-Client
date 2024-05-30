@@ -59,7 +59,7 @@ const Updated = () => {
         });
     }
     return (
-        <div className="register min-h-screen flex justify-center items-center">
+        <div className="register min-h-screen flex justify-center items-center text-base-content">
             <Helmet>
                 <title>{`Knowledge Corner | Admin | Update | ${book.book_name}`}</title>
             </Helmet>

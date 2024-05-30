@@ -40,7 +40,7 @@ const BorrowedPage = () => {
             <div className="min-h-screen font-montserrat bg-fixed bg-base-200 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.2) 100%), url("https://i.ibb.co/wRVvtKh/borrowBG.jpg)` }}>
                 <div className="w-full pb-10 pt-10 min-h-screen backdrop-blur-sm bg-base-100/10">
                     <div className="max-w-lg bg-[#d1bf9c] border-2 border-[#404142] px-2 py-2 flex justify-center items-center mx-auto rounded-full w-auto">
-                        <h3 className="text-2xl md:text-4xl font-bold text-center text-[#404142]"><span className="text-[#e08908] font-josefin">{user.displayName}</span> Borrowed :</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-center text-[#404142]"><span className="text-[#e08908] font-josefin">{user.displayName}</span> Borrowed :</h3>
                     </div>
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container mx-auto gap-5 px-2 md:px-0">
                         {
