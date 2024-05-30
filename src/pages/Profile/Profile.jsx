@@ -64,8 +64,8 @@ const Profile = () => {
                             </div>
                             <hr className="my-5" />
                             <div className="flex flex-col lg:flex-row gap-5">
-                                <div className="bg-[#d1bf9c] border-4 border-[#b6a18a] text-black px-3 py-5 md:text-xl lg:text-2xl font-semibold">Booking Books: <span className="text-amber-600 font-bold">{books.length}</span></div>
-                                <div className="bg-[#d1bf9c] border-4 border-[#b6a18a] text-black px-3 py-5 md:text-xl lg:text-2xl font-semibold">Total Fine: <span className="text-amber-600 font-bold">{countFine} tk</span></div>
+                                <div className="bg-[#d1bf9c] border-4 border-[#b6a18a] text-black px-3 py-5 md:text-xl lg:text-2xl font-semibold">Borrowing Books: <span className="text-amber-600 font-bold">{books.length}</span></div>
+                                <div className="bg-[#d1bf9c] border-4 border-[#b6a18a] text-black px-3 py-5 md:text-xl lg:text-2xl font-semibold">Total Fines: <span className="text-amber-600 font-bold">{countFine} tk</span></div>
                             </div>
                         </div>
                     </div>
