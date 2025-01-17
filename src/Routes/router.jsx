@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/all-books",
-                element: <AllBooks></AllBooks>,
+                element: <PrivateRoutes><AllBooks></AllBooks></PrivateRoutes>,
                 errorElement: <ErrorPage></ErrorPage>
             },
             {

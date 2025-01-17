@@ -16,12 +16,7 @@ const Register = () => {
     const [role, setRole] = useState("User");
     const adminCode = import.meta.env.VITE_ADMIN_CODE;
     const handleRole = (e) => {
-        if (e.target.value === "User") {
-            setRole("User");
-        }
-        else {
-            setRole("Librarian");
-        }
+        setRole(e.target.value);
     }
 
     const axiosSecure = useAxiosSecure();
@@ -95,8 +90,8 @@ const Register = () => {
                                 <span className="label-text text-sm md:text-base">Role</span>
                             </label>
                             <select className="select select-bordered text-base-content" onChange={handleRole}>
-                                <option value="User text-xs md:text-base">User</option>
-                                <option value="Librarian text-xs md:text-base">Librarian</option>
+                                <option value="User">User</option>
+                                <option value="Librarian">Librarian</option>
                             </select>
                         </div>
                         {
@@ -153,3 +148,5 @@ const Register = () => {
 };
 
 export default Register;
+
+
